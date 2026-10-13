@@ -1,0 +1,10 @@
+/* basic browser reset before my main App.css styles */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}

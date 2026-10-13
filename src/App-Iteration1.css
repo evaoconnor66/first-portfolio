@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
+body {
+  margin: 0; /* Remove default body margin */
+  font-family: 'sora',sans-serif; /* Set default font family */
+  color: #333; /* Set default text color */
+  line-height: 1.6; /* Set line height for better readability */
+  background-color: #f7f4ef; /* Set background color to light gray */
+  font-size: 18px; /* Set a default font-size */
+}
+
+a {
+  text-decoration: none; /* Remove underline from links */
+  color: #B64062; /* Set default link colour to raspberry */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline links on hover */
+}
+
+.container {
+  max-width: 1200px; /* Set max width for the container */
+  margin: 0 auto; /* Center the container */
+  padding: 2rem; /* Add padding inside the container */
+}
+/* Header Styles */
+.header {
+  background-color: #f2dde2; /* Set header background color to dark */
+  padding: 1rem; /* Add padding around the header */
+}
+
+.navbar {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out navbar items */
+  align-items: center; /* Vertically center items */
+}
+
+.logo-container {
+  display: flex; /* Use flexbox to align logos */
+  align-items: center; /* Center logos vertically */
+}
+
+.logo {
+  height: 60px; /* Set height of logo */
+  margin-right: 1rem; /* Add space between logos */
+  border-radius: 50%; /* Make logos circular */
+}
+
+.nav-links {
+  list-style: none; /* Remove bullets from the nav list */
+  display: flex; /* Display links in a row */
+}
+
+.nav-links li {
+  margin-right: 2rem; /* Space between each link */
+}
+
+.nav-links a {
+  color: #602a3a; /* Set link color to white */
+  font-weight: bold; /* Make links bold */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.nav-links a:hover {
+  color: #3e4c50; /* Change link color on hover */
+}
+/* Hero Section */
+.hero {
+  text-align: center; /* Center text in hero section */
+  padding: 4rem 0; /* Add vertical padding */
+  background-color: #B64062; /* Set hero background color to dark teal */
+  color: white; /* Set text color to white */
+}
+
+.hero h1 {
+  font-size: 3rem; /* Set large font size for heading */
+  margin-bottom: 0.5rem; /* Add space below the heading */
+}
+
+.hero p {
+  font-size: 1.5rem; /* Set font size for paragraph */
+  font-weight: 300; /* Set font weight to light */
+}
+
+/* Section Styles */
+.section {
+  margin: 4rem 0; /* Add margin above and below sections */
+  padding: 2rem; /* Add padding inside sections */
+  background-color: white; /* Set section background color to white */
+  border-radius: 8px; /* Round the corners of the section */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow to sections */
+}
+
+.about p {
+  font-size: 1.1rem; /* Set font size for paragraphs in the about section */
+  line-height: 1.8; /* Increase line height for readability */
+}
+/* Project Section */
+.projects .project-grid {
+  display: grid; /* Use CSS grid for project layout */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Create responsive grid with columns */
+  gap: 2rem; /* Add space between grid items */
+}
+
+.project-card {
+  background-color: #f9f9f9; /* Set project card background color to light gray */
+  padding: 1.5rem; /* Add padding inside the card */
+  border-radius: 8px; /* Round the corners of the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow to project cards */
+}
+
+.project-card h3 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.project-card p {
+  line-height: 1.6;
+}
+/* Contact Section */
+.contact p {
+  font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #282c34;
+  color: white;
+  margin-top: 4rem;
+}
+
+.footer p {
+  margin: 0;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+  flex-direction: column;
+}
+.hero h1 {
+  font-size: 2rem;
+}
+.text-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #B64062;
+  font-weight: 600;
+  text-decoration: none;
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+.hero-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 28px;
+  background-color: #F2DDE2;
+  color: #602A3A;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.hero-button:hover {
+  background-color: #602A3A;
+  color: #F7F4EF;
+  text-decoration: none;
+}
+.project-image {
+  width: 100%;
+  max-width: 450px;
+  height: 250px;
+  object-fit:contain;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+}

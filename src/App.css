@@ -1,0 +1,661 @@
+/* ---------- Fonts ---------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
+
+
+/* ---------- Global Styles ---------- */
+
+/* makes sizing and spacing easier to control */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #fffaf8;
+  color: #542535;
+}
+
+/* Playfair Display is used for the main headings */
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+  margin-top: 0;
+}
+
+/* removes the automatic blue and underline from links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ---------- Navbar ---------- */
+
+/* navigation used across all pages */
+.navbar {
+  width: 100%;
+  padding: 24px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2dce2;
+}
+
+.nav-links {
+  display:flex;
+  gap: 32px;
+  align-items: center;
+}
+
+/* styles my name/logo in the navbar */
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+
+/* styles the navigation links */
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/*gives feedback when the user hovers over a navigation link */
+.nav-links a:hover {
+  color: #b64062;
+}
+
+
+/* ---------- Hero Section ---------- */
+
+/* main introduction at the top of my home page */
+.hero {
+  min-height: 520px;
+  padding: 100px 8%;
+  display: flex;
+  align-items: center;
+  background-color: #b64062;
+}
+
+/* controls the width of the writing inside my hero */
+.hero-text {
+  max-width: 850px;
+}
+
+/* small introduction above my main heading */
+.hero-intro {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #fffaf8;
+}
+
+/* main heading on my home page */
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: #fffaf8;
+}
+
+/* short description underneath my main heading */
+.hero-description {
+  max-width: 620px;
+  font-size: 19px;
+  line-height: 1.7;
+  margin: 0;
+  color: #fffaf8;
+}
+
+
+/* ---------- Featured Projects ---------- */
+
+/* gives the Selected Work section space around the content */
+.featured-projects {
+  padding: 80px 8%;
+}
+
+/* displays my featured projects in a two-column layout */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+/* blank space where a project image can be added later */
+.project-image-placeholder {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+min-width: 0;
+  background-color: #f2dce2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #542535;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+/* changes the project image area when the user hovers over it */
+.project-image-placeholder:hover {
+  background-color: #542535;
+  color: #fffaf8;
+}
+
+/* heading for my featured projects section */
+.featured-projects h2 {
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #542535;
+}
+
+/* adds space between the project image and its information */
+.project-info {
+  padding-top: 20px;
+}
+
+/* small label showing the type of project */
+.project-type {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 10px;
+  color: #b64062;
+}
+
+/* main title for each project card */
+.project-info h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #542535;
+}
+
+/* small status text underneath each project title */
+.project-status {
+  font-size: 14px;
+  margin: 0;
+  color: #542535;
+  opacity: 0.7;
+}
+
+
+/* ---------- About Preview ---------- */
+
+/* short introduction to me on the home page */
+.about-preview {
+  padding: 80px 8%;
+  background-color: #f2dce2;
+}
+
+/* small label introducing the About section */
+.section-label {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 16px;
+  color: #b64062;
+}
+
+/* main introduction text in the About preview */
+.about-preview h2 {
+  max-width: 850px;
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 28px;
+  color: #542535;
+}
+
+/* link to my full About page */
+.text-link {
+  font-size: 16px;
+  font-weight: 600;
+  color: #542535;
+}
+
+/* changes the About link colour when the user hovers over it */
+.text-link:hover {
+  color: #b64062;
+}
+
+
+/* ---------- Contact CTA ---------- */
+
+/* contact section near the bottom of my home page */
+.contact-cta {
+  padding: 80px 8%;
+  background-color: #fffaf8;
+}
+
+/* main heading in my contact section */
+.contact-cta h2 {
+  max-width: 700px;
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 28px;
+  color: #542535;
+}
+
+/* button linking to my Contact page */
+.contact-button {
+  display: inline-block;
+  padding: 14px 24px;
+  background-color: #542535;
+  color: #fffaf8;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* changes the Contact button when the user hovers over it */
+.contact-button:hover {
+  background-color: #b64062;
+  color: #fffaf8;
+}
+
+
+/* ---------- Footer ---------- */
+
+/* footer used across all pages */
+.footer {
+  padding: 32px 8%;
+  background-color: #f2dce2;
+  color: #542535;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* spaces out the contact links in my footer */
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+/* changes footer links when the user hovers over them */
+.footer-links a:hover {
+  color: #b64062;
+}
+
+/* styles the copyright text in my footer */
+.footer p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+
+/* ---------- Projects Page ---------- */
+
+/* controls the width and spacing of the Projects page */
+.projects-content {
+  width: 84%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+/* main heading on the Projects page */
+.projects-intro h1 {
+  font-size: 56px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #542535;
+}
+/* short introduction underneath the Projects page title */
+.projects-intro > p:last-child {
+  max-width: 650px;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 56px;
+  color: #542535;
+}
+
+/* displays my projects in a two-column grid */
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px 32px;
+}
+
+/* spacing for each project on the Projects page */
+.project-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-item h2 {
+  font-size: 28px;
+  margin: 20px 0 8px;
+  color: #542535;
+}
+
+/* small details showing the year and type of project */
+.project-details {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  color: #b64062;
+}
+
+/* short description underneath each project */
+.project-item > p:not(.project-details) {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 18px;
+  color: #542535;
+}
+
+/* link to open the full project page */
+.project-link {
+  font-size: 16px;
+  font-weight: 600;
+  color: #542535;
+}
+
+/* changes the project link colour when the user hovers over it */
+.project-link:hover {
+  color: #b64062;
+}
+
+
+/* ---------- About Page ---------- */
+
+/* controls the width and spacing of the About page */
+.about-content {
+  width: 84%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+/* main heading on the About page */
+.about-intro h1 {
+  font-size: 56px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  color: #542535;
+}
+
+/* keeps my About text easy to read */
+.about-description {
+  max-width: 750px;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #542535;
+}
+
+
+/* ---------- Contact Page ---------- */
+
+/* controls the width and spacing of the Contact page */
+.contact-content {
+  width: 84%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+/* main heading on the Contact page */
+.contact-intro h1 {
+  font-size: 56px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #542535;
+}
+
+/* short introduction on the Contact page */
+.contact-intro > p:last-child {
+  max-width: 650px;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  color: #542535;
+}
+
+/* places my contact links beside each other */
+.contact-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+/* styles the main contact links as buttons */
+.contact-links a {
+  display: inline-block;
+  padding: 14px 24px;
+  background-color: #542535;
+  color: #fffaf8;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* changes my contact buttons when the user hovers over them */
+.contact-links a:hover {
+  background-color: #b64062;
+  color: #fffaf8;
+}
+
+
+/* ---------- Project Detail Page ---------- */
+
+/* controls the width and spacing of each individual project page */
+.project-detail-content {
+  width: 84%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+/* main title on each individual project page */
+.project-detail-intro h1 {
+  font-size: 56px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #542535;
+}
+
+/* short introduction underneath the project title */
+.project-detail-intro > p:last-child {
+  max-width: 700px;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 48px;
+  color: #542535;
+}
+
+/* large image area for the main project image */
+.project-detail-image {
+  width: 100%;
+  height: 500px;
+  background-color: #f2dce2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #542535;
+  margin-bottom: 64px;
+}
+
+/* heading for the project overview section */
+.project-overview h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #542535;
+}
+
+/* text explaining the project overview */
+.project-overview p {
+  max-width: 100%;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  color: #542535;
+}
+
+/* adds space between the main sections of each project */
+.project-overview,
+.project-process,
+.project-outcome {
+  margin-bottom: 48px;
+}
+
+/* heading for the project process section */
+.project-process h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #542535;
+}
+
+/* text explaining the main stages of my design process */
+.project-process p {
+  max-width: 750px;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  color: #542535;
+}
+
+/* heading for the final project outcome */
+.project-outcome h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #542535;
+}
+
+/* text explaining the final result of the project */
+.project-outcome p {
+  max-width: 750px;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  color: #542535;
+}
+
+
+/* ---------- Mobile Responsive Styles ---------- */
+
+@media (max-width: 768px) {
+    /* reduces the navbar spacing on smaller screens */
+  .navbar {
+    padding: 20px 5%;
+     flex-direction: column;
+     gap: 16px;
+  }
+
+  /* reduces the space between navigation links on smaller screens */
+  .nav-links {
+    gap: 16px;
+  }
+
+    /* makes the home hero fit better on smaller screens */
+  .hero {
+    min-height: auto;
+    padding: 72px 5%;
+  }
+
+    /* reduces the main heading size so it fits on smaller screens */
+  .hero h1 {
+    font-size: 44px;
+  }
+
+    /* stacks project cards into one column on smaller screens */
+  .project-grid,
+  .projects-list {
+    grid-template-columns: 1fr;
+  }
+
+    /* reduces section spacing on smaller screens */
+  .featured-projects,
+  .about-preview,
+  .contact-cta {
+    padding: 64px 5%;
+  }
+
+    /* gives the main pages more usable width on smaller screens */
+  .projects-content,
+  .about-content,
+  .contact-content,
+  .project-detail-content {
+    width: 90%;
+    padding: 64px 0;
+  }
+
+    /* reduces the main page headings on smaller screens */
+  .projects-intro h1,
+  .about-intro h1,
+  .contact-intro h1,
+  .project-detail-intro h1 {
+    font-size: 42px;
+  }
+
+    /* reduces the large project image area on smaller screens */
+  .project-detail-image {
+    height: 300px;
+    margin-bottom: 48px;
+  }
+
+    /* stacks the footer content on smaller screens */
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+    /* reduces the main section headings on smaller screens */
+  .featured-projects h2,
+  .about-preview h2,
+  .contact-cta h2 {
+    font-size: 34px;
+  }
+
+.contact-links {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+  /* reduces the project image height on smaller screens */
+  .project-image-placeholder {
+    height: 220px;
+  }
+
+    /* reduces project section headings on smaller screens */
+  .project-overview h2,
+  .project-process h2,
+  .project-outcome h2 {
+    font-size: 30px;
+  }
+}
+
+
+
+/* Keeps all project cover images the same size */
+.project-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Equia case study images */
+.process-image {
+  display: block;
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  margin: 24px auto;
+  border-radius: 8px;
+}
+
