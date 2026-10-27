@@ -658,4 +658,131 @@ min-width: 0;
   margin: 24px auto;
   border-radius: 8px;
 }
+/* Equia manufacturing CAD images */
+.manufacturing-image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 24px 0;
+}
 
+.manufacturing-image-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Stack images on smaller screens */
+@media (max-width: 600px) {
+  .manufacturing-image-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Equia assembly sequence */
+.assembly-sequence {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1100px;
+  margin: 24px auto 40px;
+}
+
+.assembly-sequence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+@media (max-width: 700px) {
+  .assembly-sequence {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Equia recovery rug sewing sequence */
+.rug-sewing-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 24px auto 40px;
+}
+
+.rug-sewing-sequence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* Equia — Final prototype gallery */
+
+.prototype-section {
+  margin-top: 48px;
+}
+
+.prototype-section p {
+  margin-bottom: 24px;
+}
+
+.prototype-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.prototype-gallery img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .prototype-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .prototype-gallery img {
+    height: auto;
+  }
+}
+/* Equia — Final Handheld Scanner Prototype */
+
+.prototype-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.prototype-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.prototype-hero-image {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  max-height: 550px;
+  object-fit: contain;
+}
+
+/* Stack images on smaller screens */
+@media (max-width: 768px) {
+  .prototype-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .prototype-hero-image {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
