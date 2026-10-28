@@ -1,9 +1,15 @@
 /* ---------- Fonts ---------- */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 /* ---------- Global Styles ---------- */
+:root {
+  --color-background: #F8F7F5;
+  --color-text: #171D1C;
+  --color-accent: #ED3D82;
+  --color-neutral: #A7B8B1;
+  --color-white: #FFFFFF;
+}
 
 /* makes sizing and spacing easier to control */
 * {
@@ -12,16 +18,20 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #fffaf8;
-  color: #542535;
+  font-family: 'DM Sans', sans-serif;
+
+  /* Main warm off-white website background */
+  background-color: var(--color-background);
+
+  /* Main dark text colour for readability */
+  color: var(--color-text);
 }
 
-/* Playfair Display is used for the main headings */
+/* Space Grotesk is used for the main headings */
 h1,
 h2,
 h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Space Grotesk', sans-serif;
   margin-top: 0;
 }
 
@@ -41,7 +51,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f2dce2;
+  background-color: var(--color-background);
 }
 
 .nav-links {
@@ -52,22 +62,26 @@ a {
 
 /* styles my name/logo in the navbar */
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
 }
 
 
 /* styles the navigation links */
 .nav-links a {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 15px;
   font-weight: 500;
+
+  /* Smooth colour change over 0.2 seconds */
+  transition: color 0.2s ease;
 }
 
 /*gives feedback when the user hovers over a navigation link */
 .nav-links a:hover {
-  color: #b64062;
+  color: var(--color-accent);
 }
 
 
@@ -75,11 +89,11 @@ a {
 
 /* main introduction at the top of my home page */
 .hero {
-  min-height: 520px;
-  padding: 100px 8%;
+  min-height: 440px;
+  padding: 72px 8%;
   display: flex;
   align-items: center;
-  background-color: #b64062;
+  background-color: var(--color-background);
 }
 
 /* controls the width of the writing inside my hero */
@@ -89,21 +103,30 @@ a {
 
 /* small introduction above my main heading */
 .hero-intro {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 16px;
-  color: #fffaf8;
+  color: var(--color-accent);
 }
 
 /* main heading on my home page */
 .hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 64px;
-  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+/* Makes my name large while adapting to different screen sizes */
+font-size: clamp(4rem, 9vw, 9rem);
+ /* Makes the heading bold for a strong editorial appearance. */
+ font-weight: 700;
+ /* Tightens the spacing between letters for an editorial look. */
+/* A negative value brings letters closer together. */
+letter-spacing: -0.04em;
   line-height: 1.1;
   margin-bottom: 24px;
-  color: #fffaf8;
+  color: var(--color-text);
+}
+
+.hero-dot {
+  color: var(--color-accent);
 }
 
 /* short description underneath my main heading */
@@ -112,7 +135,7 @@ a {
   font-size: 19px;
   line-height: 1.7;
   margin: 0;
-  color: #fffaf8;
+  color: var(--color-text);
 }
 
 
@@ -127,7 +150,23 @@ a {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  column-gap: 32px;
+  row-gap: 20px;
+}
+/* Makes the featured project stretch across both grid columns */
+.featured-card {
+  grid-column: 1 / -1;
+}
+/* Lets the featured image use its natural proportions */
+.featured-card .project-image-placeholder {
+  height: auto;
+}
+
+/* Shows the full Equia cover without cropping */
+.featured-card .project-cover-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* blank space where a project image can be added later */
@@ -136,13 +175,15 @@ a {
   height: 280px;
   overflow: hidden;
 min-width: 0;
-  background-color: #f2dce2;
+  background-color: #E8ECE9;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #542535;
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
+  /* Gives each project image a softer, modern shape */
+border-radius: 16px;
 }
 
 /* changes the project image area when the user hovers over it */
@@ -156,28 +197,32 @@ min-width: 0;
   font-size: 42px;
   font-weight: 600;
   margin-bottom: 40px;
-  color: #542535;
+  color: var(--color-text);
 }
 
 /* adds space between the project image and its information */
 .project-info {
-  padding-top: 20px;
+  padding-top: 12px;
 }
 
 /* small label showing the type of project */
 .project-type {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
+  letter-spacing: 0.02em;
   margin: 0 0 10px;
-  color: #b64062;
+  color: var(--color-accent);
 }
 
-/* main title for each project card */
+
+/* Styles the main title of each project card */
 .project-info h3 {
-  font-size: 26px;
-  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   margin: 0 0 10px;
-  color: #542535;
+  color: var(--color-text);
 }
 
 /* small status text underneath each project title */
@@ -194,7 +239,18 @@ min-width: 0;
 /* short introduction to me on the home page */
 .about-preview {
   padding: 80px 8%;
-  background-color: #f2dce2;
+  background-color: var(--color-background);
+  
+}
+/* Small accent line above the About Me introduction */
+.about-preview::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin-bottom: 32px;
+  border-radius: 2px;
 }
 
 /* small label introducing the About section */
@@ -202,29 +258,30 @@ min-width: 0;
   font-size: 15px;
   font-weight: 500;
   margin: 0 0 16px;
-  color: #b64062;
+  color: var(--color-accent);
 }
 
 /* main introduction text in the About preview */
 .about-preview h2 {
+  font-family: 'Space Grotesk', sans-serif;
   max-width: 850px;
-  font-size: 42px;
+  font-size: clamp(36px, 4vw, 56px);
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 28px;
-  color: #542535;
+  color: var(--color-text);
 }
 
 /* link to my full About page */
 .text-link {
   font-size: 16px;
   font-weight: 600;
-  color: #542535;
+  color: var(--color-text);
+  transition: color 0.2s ease;
 }
 
-/* changes the About link colour when the user hovers over it */
 .text-link:hover {
-  color: #b64062;
+  color: var(--color-accent);
 }
 
 
@@ -233,7 +290,7 @@ min-width: 0;
 /* contact section near the bottom of my home page */
 .contact-cta {
   padding: 80px 8%;
-  background-color: #fffaf8;
+  background-color: var(--color-text);
 }
 
 /* main heading in my contact section */
@@ -243,23 +300,23 @@ min-width: 0;
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 28px;
-  color: #542535;
+  color: var(--color-white);
 }
 
 /* button linking to my Contact page */
 .contact-button {
   display: inline-block;
   padding: 14px 24px;
-  background-color: #542535;
-  color: #fffaf8;
+  background-color: var(--color-accent);
+  color: var(--color-white);
   font-size: 16px;
   font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
 }
 
-/* changes the Contact button when the user hovers over it */
 .contact-button:hover {
-  background-color: #b64062;
-  color: #fffaf8;
+  background-color: #D52D70;
 }
 
 
@@ -268,11 +325,12 @@ min-width: 0;
 /* footer used across all pages */
 .footer {
   padding: 32px 8%;
-  background-color: #f2dce2;
-  color: #542535;
+  background-color: var(--color-text);
+  color: var(--color-white);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.15);
 }
 
 /* spaces out the contact links in my footer */
@@ -283,7 +341,7 @@ min-width: 0;
 
 /* changes footer links when the user hovers over them */
 .footer-links a:hover {
-  color: #b64062;
+  color: var(--color-accent);
 }
 
 /* styles the copyright text in my footer */
@@ -306,6 +364,7 @@ min-width: 0;
 
 /* main heading on the Projects page */
 .projects-intro h1 {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 56px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -380,6 +439,7 @@ min-width: 0;
 
 /* main heading on the About page */
 .about-intro h1 {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 56px;
   font-weight: 600;
   margin-bottom: 28px;
@@ -408,6 +468,7 @@ min-width: 0;
 
 /* main heading on the Contact page */
 .contact-intro h1 {
+  font-family: 'Space Grotesk', sans-serif; 
   font-size: 56px;
   font-weight: 600;
   margin-bottom: 24px;
@@ -459,6 +520,7 @@ min-width: 0;
 
 /* main title on each individual project page */
 .project-detail-intro h1 {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 56px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -563,7 +625,7 @@ min-width: 0;
     /* makes the home hero fit better on smaller screens */
   .hero {
     min-height: auto;
-    padding: 72px 5%;
+    padding: 20px 5% 40px;
   }
 
     /* reduces the main heading size so it fits on smaller screens */
@@ -645,7 +707,7 @@ min-width: 0;
 .project-cover-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
@@ -729,7 +791,7 @@ min-width: 0;
   margin-bottom: 24px;
 }
 
-.prototype-gallery {
+.prototype-photo-gallery {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
@@ -784,5 +846,73 @@ min-width: 0;
   .prototype-hero-image {
     grid-column: auto;
     grid-row: auto;
+  }
+}
+
+/* Keeps smaller project images at the same height */
+.project-card:not(.featured-card) .project-image-placeholder {
+  height: 380px;
+  overflow: hidden;
+  border-radius: 16px;
+  background-color: var(--color-white);
+}
+
+/* Fits the entire product image inside the card */
+.project-card:not(.featured-card) .project-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Makes the NUVAIR image fill its card */
+.project-card:has(img[src*="nuvair-cover"]) .project-image-placeholder {
+  background-color: #080808;
+}
+
+.project-card:has(img[src*="nuvair-cover"]) .project-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Mobile — About Me heading */
+@media (max-width: 700px) {
+  .about-preview h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+}
+/* Mobile — stack first name and surname */
+@media (max-width: 700px) {
+  .hero-first-name,
+  .hero-last-name {
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 10vw, 52px);
+    line-height: 1.05;
+  }
+}
+/* Mobile — tighter spacing between hero and selected work */
+@media (max-width: 700px) {
+  .hero {
+    min-height: auto;
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+
+  .featured-projects {
+    padding-top: 32px;
+  }
+}
+
+/* Mobile — reduce the gap between projects and About Me */
+@media (max-width: 700px) {
+  .featured-projects {
+    padding-bottom: 32px;
+  }
+
+  .about-preview {
+    padding-top: 32px;
   }
 }

@@ -1,8 +1,20 @@
 import { Link } from "react-router";
 import Navbar from "../components/Navbar"; // imports my reusable navbar
 import Footer from "../components/Footer"; // imports my reusable footer
+import { sortedProjects } from "../data/projects"; // Gets my portfolio projects from the central project data file
+
 
 function Home() { // creates the component that will be my home page
+  // Finds the project marked as featured in projects.ts
+  const featuredProject = sortedProjects.find(
+    (project) => project.featured === true
+  );
+
+  // Gets the remaining projects for the smaller cards
+const otherProjects = sortedProjects.filter(
+  (project) => project.featured !== true
+);
+
   return (
     <div className="home-page">
       {/* everything inside here is what React puts on the screen */}
@@ -13,9 +25,14 @@ function Home() { // creates the component that will be my home page
     {/*main intro people see when they first open my website */}
     <section className="hero">
         <div className="hero-text">
-            <p className="hero-intro">Hi, I'm Eva</p>
+            <p className="hero-intro">PRODUCT & INTERACTION DESIGNER</p>
            
-            <h1> Product & Interaction Designer</h1>
+    <h1>
+    <span className="hero-first-name">EVA</span>
+    <span className="hero-last-name">
+    O'CONNOR<span className="hero-dot">.</span>
+    </span>
+     </h1>
             
             <p className="hero-description">
                 I design thoughtful products and experiences through
@@ -28,35 +45,60 @@ function Home() { // creates the component that will be my home page
         <h2>Selected Work</h2>
         <div className="project-grid">
 
-{/* space for future Master's project */}
 
-<article className="project-card project-placeholder">
-  
-  {/* placeholder where a project image can be added later */}
-<div className="project-image-placeholder">
-  Image Placeholder
-</div>
+{/* Displays the project marked as featured */}
+{featuredProject && (
+  <article className="project-card featured-card">
 
-  <div className="project-info">
-    <p className="project-type">Interaction & Experience Design</p>
-    <h3>Master's Project</h3>
-    <p className="project-status">Coming Soon</p>
-  </div>
-</article>
+    {/* Links to the full project case study */}
+    <Link to={`/projects/${featuredProject.id}`}>
 
-{/* space for another future Master's project */}
-<article className="project-card project-placeholder">
-  {/* placeholder where a project image can be added later */}
-<div className="project-image-placeholder">
-  Image Placeholder
-</div>
+      {/* Displays the project's cover image */}
+      <div className="project-image-placeholder">
+        <img
+          src={featuredProject.image}
+          alt={`${featuredProject.title} project cover`}
+          className="project-cover-image"
+        />
+      </div>
 
-  <div className="project-info">
-    <p className="project-type">Interaction & Experience Design</p>
-    <h3>Master's Project</h3>
-    <p className="project-status">Coming Soon</p>
-  </div>
-</article>
+      {/* Displays the project title and category */}
+      <div className="project-info">
+        <p className="project-type">{featuredProject.type}</p>
+        <h3>{featuredProject.title}</h3>
+      </div>
+
+    </Link>
+  </article>
+)}
+
+
+ {/* Creates a smaller card for every non-featured project */}
+{otherProjects.map((project) => (
+  <article className="project-card" key={project.id}>
+
+    {/* Links each card to its full project page */}
+    <Link to={`/projects/${project.id}`}>
+
+      {/* Displays the project's cover image */}
+      <div className="project-image-placeholder">
+        <img
+          src={project.image}
+          alt={`${project.title} project cover`}
+          className="project-cover-image"
+        />
+      </div>
+
+      {/* Displays the project category and name */}
+      <div className="project-info">
+        <p className="project-type">{project.type}</p>
+        <h3>{project.title}</h3>
+      </div>
+
+    </Link>
+  </article>
+))}
+
 </div>
         </section>
 
@@ -64,13 +106,13 @@ function Home() { // creates the component that will be my home page
 <section className="about-preview">
   <p className="section-label">About Me</p>
 
-  <h2>
-    Product designer with a hands-on approach to research, making and
-    user-focused design.
-  </h2>
+<h2>
+  I'm a product and interaction designer who loves turning ideas
+  into thoughtful, tangible experiences.
+</h2>
 
   <Link to="/about" className="text-link">
-    More About Me
+    More About Me →
   </Link>
 </section>
 
