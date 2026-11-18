@@ -5,15 +5,25 @@ import { sortedProjects } from "../data/projects"; // Gets my portfolio projects
 
 
 function Home() { // creates the component that will be my home page
-  // Finds the project marked as featured in projects.ts
-  const featuredProject = sortedProjects.find(
-    (project) => project.featured === true
-  );
-
-  // Gets the remaining projects for the smaller cards
-const otherProjects = sortedProjects.filter(
-  (project) => project.featured !== true
+/* OLD CODE — manually selecting a featured project
+const featuredProject = sortedProjects.find(
+  (project) => project.featured === true
 );
+*/
+
+// NEW CODE — automatically selects the newest project
+const featuredProject = sortedProjects[0];
+
+/* OLD CODE — selected four projects by excluding the featured project
+const otherProjects = sortedProjects
+  .filter((project) => project.id !== featuredProject?.id)
+  .slice(0, 4);
+*/
+
+// NEW CODE — displays projects 2 to 5, in completion-date order
+// Project 1 is already displayed in the large first card
+// When a newer project is added, the oldest drops off the homepage
+const otherProjects = sortedProjects.slice(1, 5);
 
   return (
     <div className="home-page">
@@ -27,23 +37,39 @@ const otherProjects = sortedProjects.filter(
         <div className="hero-text">
             <p className="hero-intro">PRODUCT & INTERACTION DESIGNER</p>
            
-    <h1>
-    <span className="hero-first-name">EVA</span>
-    <span className="hero-last-name">
+
+<h1>
+  <span className="hero-first-name">EVA</span>
+  <span className="hero-last-name">
     O'CONNOR<span className="hero-dot">.</span>
-    </span>
-     </h1>
+  </span>
+</h1>
             
-            <p className="hero-description">
-                I design thoughtful products and experiences through
-                creativity and hands on making
-            </p>
             </div>
     </section>
+  
+  {/* short intro about me - full information will be on my About page */}
+<section className="about-preview">
+  
+<h2>
+  Beyond the{" "}
+  <span className="about-highlight">portfolio.</span>
+</h2>
+
+
+  <Link to="/about" className="text-link">
+    Get to know me →
+  </Link>
+</section>
+
+  
     {/* shows a selection of my main projects on the home page */}
     <section className="featured-projects">
         <h2>Selected Work</h2>
         <div className="project-grid">
+
+  {/* Left column of the editorial project gallery */}
+<div className="project-column project-column-left">
 
 
 {/* Displays the project marked as featured */}
@@ -72,22 +98,29 @@ const otherProjects = sortedProjects.filter(
   </article>
 )}
 
-
- {/* Creates a smaller card for every non-featured project */}
-{otherProjects.map((project) => (
-  <article className="project-card" key={project.id}>
+{/* Selects every second project for the left column */}
+{otherProjects.filter((_, index) => index % 2 === 1).map((project) => (
+    <article className="project-card" key={project.id}>
 
     {/* Links each card to its full project page */}
     <Link to={`/projects/${project.id}`}>
 
       {/* Displays the project's cover image */}
-      <div className="project-image-placeholder">
-        <img
-          src={project.image}
-          alt={`${project.title} project cover`}
-          className="project-cover-image"
-        />
-      </div>
+
+<div className="project-image-placeholder">
+  {project.image ? (
+    <img
+      src={project.image}
+      alt={`${project.title} project cover`}
+      className="project-cover-image"
+    />
+  ) : (
+    <div className="coming-soon-placeholder">
+      <span>COMING SOON</span>
+    </div>
+  )}
+</div>
+
 
       {/* Displays the project category and name */}
       <div className="project-info">
@@ -99,33 +132,77 @@ const otherProjects = sortedProjects.filter(
   </article>
 ))}
 
+{/* Closes the left column of the project gallery */}
 </div>
-        </section>
 
-        {/* short intro about me - full information will be on my About page */}
-<section className="about-preview">
-  <p className="section-label">About Me</p>
+{/* Right column of the editorial project gallery */}
+<div className="project-column project-column-right">
 
-<h2>
-  I'm a product and interaction designer who loves turning ideas
-  into thoughtful, tangible experiences.
-</h2>
+ {/* Creates a smaller card for every non-featured project */}
+{otherProjects.filter((_, index) => index % 2 === 0).map((project) => (
+  <article className="project-card" key={project.id}>
 
-  <Link to="/about" className="text-link">
-    More About Me →
-  </Link>
+    {/* Links each card to its full project page */}
+    <Link to={`/projects/${project.id}`}>
+
+{/* Displays a placeholder for future projects without images */}
+<div className="project-image-placeholder">
+  {project.image ? (
+    <img
+      src={project.image}
+      alt={`${project.title} project cover`}
+      className="project-cover-image"
+    />
+  ) : (
+    <div className="coming-soon-placeholder">
+      COMING SOON
+    </div>
+  )}
+</div>
+
+      {/* Displays the project category and name */}
+      <div className="project-info">
+        <p className="project-type">{project.type}</p>
+        <h3>{project.title}</h3>
+      </div>
+
+    </Link>
+  </article>
+))}
+
+{/* Closes the right column */}
+</div>
+
+{/* Closes the overall project grid */}
+</div>
+
+{/* Closes the Selected Work section */}
 </section>
 
-{/* encourages users to get in touch and links to my Contact page */}
+
+{/* Large contact section at the bottom of my homepage */}
 <section className="contact-cta">
+
+  {/* Small section label */}
   <p className="section-label">Get In Touch</p>
 
-  <h2>Have a project or opportunity in mind?</h2>
+  {/* Main contact heading */}
+  <h2>Have something in mind?</h2>
 
-  <Link to="/contact" className="contact-button">
-    Contact Me
-  </Link>
+  {/* Large editorial statement */}
+  <h3 className="contact-statement">Let's talk.</h3>
+
+  {/* Clickable email address */}
+  <a
+    href="mailto:evaoconnor66@gmail.com"
+    className="contact-email"
+  >
+    evaoconnor66@gmail.com
+    
+  </a>
+
 </section>
+
 
 {/* puts my reusable footer at the bottom of the home page */}
 <Footer />
