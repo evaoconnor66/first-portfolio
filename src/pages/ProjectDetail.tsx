@@ -80,7 +80,7 @@ const project = projects.find((project) => project.id === id);
       poster={project.image}
     >
       <source
-        src="/videos/click-into-the-moment.mp4"
+        src={`${import.meta.env.BASE_URL}videos/click-into-the-moment.mp4`}
         type="video/mp4"
       />
       Your browser does not support video playback.
@@ -690,7 +690,7 @@ shows the content for my video production
 
 {/* Displays my initial concept brainstorming */}
 <img
-  src="/images/click-into-the-moment/concept-development.jpg"
+  src={`${import.meta.env.BASE_URL}images/click-into-the-moment/concept-development.jpg`}
   alt="Initial brainstorming exploring the Easypix camera concept and target audience"
   className="video-process-image"
 />
@@ -718,7 +718,7 @@ shows the content for my video production
 
 {/* Displays the group storyboard used during planning */}
 <img
-  src="/images/click-into-the-moment/storyboard.jpg"
+  src={`${import.meta.env.BASE_URL}images/click-into-the-moment/storyboard.jpg`}
   alt="Hand-drawn storyboard showing the planned camera shots and scenes around Limerick"
   className="video-process-image video-storyboard-image"
 />
@@ -886,22 +886,22 @@ shows the content for my video production
 {/* Displays four developed 35mm film photographs */}
 <div className="video-film-grid">
   <img
-    src="/images/click-into-the-moment/film-photo-03.jpg"
+    src={`${import.meta.env.BASE_URL}images/click-into-the-moment/film-photo-03.jpg`}
     alt="Developed 35mm film photograph 3"
   />
 
   <img
-    src="/images/click-into-the-moment/film-photo-01.jpg"
+    src={`${import.meta.env.BASE_URL}images/click-into-the-moment/film-photo-01.jpg`}
     alt="Developed 35mm film photograph 1"
   />
 
   <img
-    src="/images/click-into-the-moment/film-photo-02.jpg"
+    src={`${import.meta.env.BASE_URL}images/click-into-the-moment/film-photo-02.jpg`}
     alt="Developed 35mm film photograph 2"
   />
 
   <img
-    src="/images/click-into-the-moment/film-photo-04.jpg"
+    src={`${import.meta.env.BASE_URL}images/click-into-the-moment/film-photo-04.jpg`}
     alt="Developed 35mm film photograph 4"
   />
 </div>
@@ -934,7 +934,7 @@ shows the content for my video production
 
 {/* Displays a behind-the-scenes photograph from filming */}
 <img
-  src="/images/click-into-the-moment/behind-the-scenes.jpg"
+  src={`${import.meta.env.BASE_URL}images/click-into-the-moment/behind-the-scenes.jpg`}
   alt="Behind-the-scenes photograph taken during filming in Limerick city centre"
   className="video-process-image video-behind-scenes-image"
 />
