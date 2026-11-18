@@ -8,7 +8,7 @@ export const projects = [
     title: "Click Into the Moment",
     type: "Video Production | Creative Direction | Visual Storytelling",
     date: "2026-11-13",
-    image: "/images/click-into-the-moment/video-cover.jpeg",
+    image: `${import.meta.env.BASE_URL}images/click-into-the-moment/video-cover.jpeg`,
     description:
       "A nostalgic promotional film for the Easypix 35mm camera, exploring friendship and the moments worth capturing.",
   },
@@ -18,7 +18,7 @@ export const projects = [
   {
     id: "photography-series",
     title: "Photographic Series",
-    image: "/images/photography-series/photography-cover.jpg",
+    image: `${import.meta.env.BASE_URL}images/photography-series/photography-cover.jpg`,
     date: "2026-10-09",
     type: "Photography | Visual Storytelling",
     description:
@@ -29,7 +29,7 @@ export const projects = [
     id: "equia",
     title: "Equia",
     //featured: true, // Shows Equia as my main featured project
-    image: "/images/equia/equia-cover.png",
+    image: `${import.meta.env.BASE_URL}images/equia/equia-cover.png`,
     date: "2026-05-01",
     type: "Product Design | UX/UI",
     description:
@@ -38,7 +38,7 @@ export const projects = [
   {
     id: "nos-nua",
     title: "Nós-Nua",
-    image: "/images/other work/nos-nua-cover.png",
+    image: `${import.meta.env.BASE_URL}images/other work/nos-nua-cover.png`,
     date: "2025-09-01",
     type: "Commercial Design | Branding | Web Design",
     description:
@@ -49,7 +49,7 @@ export const projects = [
 {
   id: "nuvair",
   title: "NUVAIR",
-  image: "/images/other work/nuvair-cover.jpeg",
+  image: `${import.meta.env.BASE_URL}images/other work/nuvair-cover.jpeg`,
   date: "2025-11-01",
   type: "Product Design | Concept Development",
   description: "Product design concept exploring form and functionality.",
