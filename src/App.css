@@ -655,7 +655,8 @@ body {
   width: 88%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 40px 0;
+
 }
 
 /* Styles the main About page heading */
@@ -669,6 +670,11 @@ body {
   margin-bottom: 32px;
 }
 
+/* Highlights my name in raspberry pink */
+.about-intro h1 span {
+  color: var(--color-accent);
+}
+
 /* Keeps my introduction at a comfortable reading width */
 .about-description {
   max-width: 750px;
@@ -679,6 +685,567 @@ body {
   color: var(--color-text);
   margin-bottom: 24px;
 }
+
+/* Styles my About page portrait */
+.about-portrait {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
+  justify-self: center;
+
+}
+
+/* Places my introduction and portrait side by side */
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Stacks my About introduction on smaller screens */
+@media (max-width: 768px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Styles the skills icons */
+.skill-icon {
+  color: var(--color-accent);
+  font-size: 26px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Minimal expandable skills section */
+.skill-accordion {
+  border-bottom: 1px solid #DADADA;
+  background: transparent;
+}
+
+/* Creates two columns for the skills dropdowns */
+.about-skills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+}
+
+/* Software & Tools stretches across both columns */
+.about-software {
+  grid-column: 1 / -1;
+}
+
+/* Stacks the skills dropdowns on mobile */
+@media (max-width: 768px) {
+  .about-skills {
+    grid-template-columns: 1fr;
+  }
+
+  .about-skills > .skill-accordion:first-of-type,
+  .about-software {
+    grid-column: 1;
+  }
+}
+
+/* Product Design takes up the full width */
+.about-skills > .skill-accordion:first-of-type {
+  grid-column: 1 / -1;
+}
+
+/* Clickable skills heading */
+.skill-accordion-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Hides the browser's default dropdown arrow */
+.skill-accordion-heading::-webkit-details-marker {
+  display: none;
+}
+
+/* Pushes our Bootstrap arrow to the right */
+.skill-chevron {
+  margin-left: auto;
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+/* Smoothly animates the dropdown arrow */
+.skill-chevron {
+  transition: transform 0.25s ease;
+}
+
+/* Rotates the arrow when the dropdown is open */
+.skill-accordion[open] .skill-chevron {
+  transform: rotate(180deg);
+}
+
+/* Skills displayed when a dropdown opens */
+.skill-accordion-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 24px;
+  list-style: none;
+  padding: 0 0 28px;
+  margin: 0;
+}
+
+/* Individual skills */
+.skill-accordion-list li {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .skill-accordion-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Software and Tools section */
+.about-software {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 64px;
+}
+
+/* Software section heading */
+.about-software > h3 {
+  grid-column: 1 / -1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Mobile software layout */
+@media (max-width: 768px) {
+  .about-software {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 48px;
+  }
+}
+/* Software category headings */
+.software-category h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 24px;
+  color: var(--color-text);
+}
+
+/* Raspberry accent underneath software headings */
+.software-category h4::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  background-color: var(--color-accent);
+  border-radius: 3px;
+  margin-top: 12px;
+}
+
+/* Removes bullets and default spacing */
+.software-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Spacing between each software */
+.software-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+/* Proficiency level */
+.software-level {
+  font-size: 13px;
+  color: #777777;
+}
+
+/* Software category numbers */
+.software-number {
+  display: block;
+  color: var(--color-accent);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Stronger About page section headings */
+.about-skills > h2,
+.about-software > h3,
+.about-journey > h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(30px, 3.5vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+/* Raspberry accent underneath main About headings */
+.about-skills > h2::after,
+.about-software > h3::after,
+.about-journey > h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  background-color: var(--color-accent);
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+/* Subtle sage background for Software & Tools */
+.about-software {
+  background-color: #E9EFEC;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+
+/* =========================================
+   MY JOURNEY SO FAR — TIMELINE
+   ========================================= */
+
+/* Creates space around my journey section */
+.about-journey {
+  margin-top: 100px;
+  padding-bottom: 80px;
+}
+
+/* Holds all the timeline milestones */
+.journey-timeline {
+  position: relative;
+  margin-top: 50px;
+}
+
+/* Creates the vertical timeline line */
+.journey-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: var(--color-accent);
+  transform: translateX(-50%);
+}
+
+/* Each milestone takes up one row */
+.journey-item {
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 0 50px 45px 0;
+}
+
+/* Places odd milestones on the left */
+.journey-item:nth-child(odd) {
+  margin-left: 0;
+  text-align: right;
+}
+
+/* Places even milestones on the right */
+.journey-item:nth-child(even) {
+  margin-left: 50%;
+  padding: 0 0 45px 50px;
+  text-align: left;
+}
+
+/* Creates a raspberry dot for each milestone */
+.journey-item::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: -7px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-accent);
+  border: 3px solid var(--color-background);
+  border-radius: 50%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+/* Moves the dots to the left edge of right-hand milestones */
+.journey-item:nth-child(even)::before {
+  right: auto;
+  left: -7px;
+}
+
+/* Graduation cap icon for completed BSc degree */
+.journey-graduation::before {
+  content: "\F6FD";
+  font-family: "bootstrap-icons";
+  font-size: 23px;
+  color: var(--color-accent);
+  background-color: var(--color-background);
+  border: none;
+  border-radius: 0;
+  width: 28px;
+  height: 28px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Centres the graduation cap on the timeline */
+.journey-graduation:nth-child(even)::before {
+  left: -14px;
+}
+
+/* Award ribbon for BD Medical Scholarship */
+.journey-award::before {
+  content: "\F153";
+  font-family: "bootstrap-icons";
+  font-size: 23px;
+  color: var(--color-accent);
+  background-color: var(--color-background);
+  border: none;
+  border-radius: 0;
+  width: 28px;
+  height: 28px;
+  top: 0;
+  right: -14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Briefcase icon for Nós-Nua industry placement */
+.journey-placement::before {
+  content: "\F1CC";
+  font-family: "bootstrap-icons";
+  font-size: 23px;
+  color: var(--color-accent);
+  background-color: var(--color-background);
+  border: none;
+  border-radius: 0;
+  width: 28px;
+  height: 28px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Centres the briefcase on the timeline */
+.journey-placement:nth-child(even)::before {
+  left: -14px;
+}
+
+/* Timeline dates */
+.journey-year {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+/* Timeline milestone headings */
+.journey-content h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+  margin: 0 0 8px;
+}
+
+/* University and organisation names */
+.journey-location {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-neutral);
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+/* Timeline descriptions */
+.journey-description {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Compact styling for shorter achievements */
+.journey-item-small {
+  padding-bottom: 25px;
+}
+
+/* Mobile timeline layout */
+@media (max-width: 768px) {
+  /* Keep every timeline milestone left-aligned on mobile */
+.journey-item:nth-child(odd),
+.journey-item:nth-child(even) {
+  text-align: left;
+}
+  .journey-timeline::before {
+    left: 7px;
+    transform: none;
+    
+  }
+
+  .journey-item,
+  .journey-item:nth-child(even) {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 0 40px 35px;
+    text-align: left;
+  }
+
+  .journey-item::before,
+  .journey-item:nth-child(even)::before {
+    left: 1px;
+    right: auto;
+  }
+
+  .journey-item-small {
+    padding-bottom: 25px;
+  }
+}
+/* Extra space between portrait and skills on mobile */
+@media (max-width: 768px) {
+  .about-skills {
+    margin-top: 48px;
+  }
+}
+
+/* =========================================
+   ABOUT PAGE — EXPLORE MY WORK
+   ========================================= */
+
+/* Full-width charcoal section */
+.about-cta {
+  width: 100%;
+  background-color: var(--color-charcoal);
+  padding: 60px 0;
+}
+
+/* Aligns the content with the rest of the website */
+.about-cta-content {
+  width: 88%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Small raspberry label */
+.about-cta-label {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+  margin-bottom: 20px;
+}
+
+/* Main Explore My Work heading */
+.about-cta h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--color-white);
+  margin: 0 0 24px;
+}
+
+/* Short description underneath */
+.about-cta p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #D5D5D5;
+  max-width: 600px;
+  margin: 0 0 32px;
+}
+
+/* Places the CTA buttons side by side */
+.about-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Shared button styling */
+.about-cta-buttons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+/* Raspberry View Projects button */
+.about-cta-primary {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* Outlined Contact Me button */
+.about-cta-secondary {
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+}
+
+/* Raspberry button turns white on hover */
+.about-cta-primary:hover {
+  background-color: var(--color-white);
+  color: var(--color-charcoal);
+}
+
+/* White outlined button turns raspberry on hover */
+.about-cta-secondary:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+
+/* Makes keyboard navigation visible */
+.about-cta-buttons a:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+
 
 /* ==================================================
    10 - CONTACT PAGE: GET IN TOUCH
