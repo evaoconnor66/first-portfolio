@@ -7,6 +7,7 @@ export const projects = [
     id: "click-into-the-moment",
     title: "Click Into the Moment",
     type: "Video Production | Creative Direction | Visual Storytelling",
+    categories: ["Visual & Creative"],
     date: "2026-11-13",
     image: `${import.meta.env.BASE_URL}images/click-into-the-moment/video-cover.jpeg`,
     description:
@@ -21,6 +22,7 @@ export const projects = [
     image: `${import.meta.env.BASE_URL}images/photography-series/photography-cover.jpg`,
     date: "2026-10-09",
     type: "Photography | Visual Storytelling",
+    categories: ["Visual & Creative"],
     description:
       "A three-part photographic series exploring identity, personal interests and visual storytelling.",
   },
@@ -32,6 +34,7 @@ export const projects = [
     image: `${import.meta.env.BASE_URL}images/equia/equia-cover.png`,
     date: "2026-05-01",
     type: "Product Design | UX/UI",
+    categories: ["Product Design", "UX/UI & Interactive"],
     description:
       "A connected equine health and recovery system combining physical product design and a digital experience.",
   },
@@ -41,6 +44,7 @@ export const projects = [
     image: `${import.meta.env.BASE_URL}images/other work/nos-nua-cover.png`,
     date: "2025-09-01",
     type: "Commercial Design | Branding | Web Design",
+    categories: ["Product Design", "Visual & Creative"],
     description:
       "Commercial design work including packaging, photography and website development.",
   },
@@ -52,6 +56,7 @@ export const projects = [
   image: `${import.meta.env.BASE_URL}images/other work/nuvair-cover.jpeg`,
   date: "2025-11-01",
   type: "Product Design | Concept Development",
+  categories: ["Product Design"],
   description: "Product design concept exploring form and functionality.",
 },
 

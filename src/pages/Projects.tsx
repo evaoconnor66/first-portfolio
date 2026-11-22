@@ -1,14 +1,18 @@
 import { Link } from "react-router";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { sortedProjects } from "../data/projects";
 
 
 
-
-
 function Projects() {
+
+  // Remembers which project category the visitor selects
+  const [activeFilter, setActiveFilter] = useState("All Projects");
+
   return (
+
     <div className="projects-page">
  {/* puts my reusable navbar on the projects page */}
 <Navbar />
@@ -17,24 +21,60 @@ function Projects() {
 <main className="projects-content">
   <section className="projects-intro">
     <p className="section-label">My Work</p>
-    <h1>Projects</h1>
-    <p>
-      A selection of projects from product design, interaction design
-      and creative work.
-    </p>
-  </section>
+  <h1>
+    What I've Been <span>Up To.</span>
+  </h1>
+</section>
 
-  {/* holds all of the projects shown in my portfolio */}
+{/* Lets visitors filter projects by design category */}
+<div className="project-filters">
+
+  {[
+    "All Projects",
+    "Product Design",
+    "UX/UI & Interactive",
+    "Visual & Creative"
+  ].map((category) => (
+
+    <button
+      key={category}
+      type="button"
+      className={
+        activeFilter === category
+          ? "filter-button active"
+          : "filter-button"
+      }
+      onClick={() => setActiveFilter(category)}
+    >
+      {category}
+    </button>
+
+  ))}
+
+</div>
+  
+{/* holds all of the projects shown in my portfolio */}
 <section className="projects-list">
 
-
 {/* Creates a card for each project, newest first */}
-{sortedProjects.map((project) => (
+{sortedProjects
+  .filter((project) =>
+    activeFilter === "All Projects" ||
+    project.categories.includes(activeFilter)
+  )
+  .map((project) => (
   <article className="project-item" key={project.id}>
 
 {/* Clicking the image opens the project page */}
 <Link to={`/projects/${project.id}`}>
-  <div className="project-image-placeholder">
+  <div
+  className={`project-image-placeholder ${
+    project.id === "photography-series" ||
+    project.id === "nos-nua"
+      ? "project-image-portrait"
+      : "project-image-landscape"
+  }`}
+>
     {project.image ? (
       <img
         src={project.image}
@@ -56,8 +96,16 @@ function Projects() {
       {project.date.slice(0, 4)} | {project.type}
     </p>
 
-    {/* Displays the project description */}
-    <p>{project.description}</p>
+{/* Full description stays visible on desktop */}
+<p className="project-description-desktop">
+  {project.description}
+</p>
+
+{/* Expandable description for mobile */}
+<details className="project-description-mobile">
+  <summary>Read more</summary>
+  <p>{project.description}</p>
+</details>
 
     {/* Link to the full project page */}
     <Link
@@ -71,24 +119,6 @@ function Projects() {
 ))}
 
 </section>
-
-{/* Displays smaller creative projects in a visual gallery */}
-<section className="other-work">
-
-  <h2>Other Creative Work</h2>
-
-  <p>
-    A collection of additional projects exploring product design,
-    materials, prototyping and visual communication.
-  </p>
-
-  {/* Gallery images and project captions will go here */}
-  <div className="other-work-grid">
-
-  </div>
-
-</section>
-
 </main>
 
 {/* puts my reusable footer at the bottom of the projects page */}

@@ -258,7 +258,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  background-color: var(--color-white);
+  background-color: transparent;
   border-radius: 16px;
 }
 
@@ -564,31 +564,44 @@ body {
   line-height: 1.1;
 
   color: var(--color-text);
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 }
-
-/* Styles the introduction underneath the heading */
-.projects-intro > p:last-child {
-  max-width: 650px;
-  font-size: 18px;
-  line-height: 1.7;
-
-  color: var(--color-text);
-  margin-bottom: 56px;
+/* Highlights "Up To." in raspberry pink */
+.projects-intro h1 span {
+  color: var(--color-accent);
 }
 
 /* Arranges all projects into two columns */
 .projects-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 64px 32px;
+  columns: 2;
+  column-gap: 24px;
+}
+/* ---------- PROJECT IMAGE SHAPES ---------- */
+
+/* Portrait images: shorter, with rounded corners */
+.projects-list .project-image-portrait {
+  width: 100%;
+  height: 550px;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-/* Arranges the content within each project card */
+/* Shows the complete portrait photograph on desktop */
+.projects-list .project-image-portrait img {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+/* Arranges each project card and prevents it splitting between columns */
 .project-item {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  break-inside: avoid;
+  margin-bottom: 32px;
 }
 
 /* Styles the project title */
@@ -620,21 +633,95 @@ body {
   margin: 0 0 20px;
 }
 
-/* Styles the link to an individual project page */
+/* Styles the View Project link as an outlined button */
 .project-link {
   display: inline-block;
   align-self: flex-start;
 
-  font-size: 16px;
+padding: 6px 12px;
+border: 1px solid var(--color-text);
+border-radius: 4px;
+
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
+  text-decoration: none;
 
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 /* Changes the project link to pink on hover */
 .project-link:hover {
   color: var(--color-accent);
+}
+/* Hides the Read more dropdown on desktop */
+.project-description-mobile {
+  display: none;
+}
+/* Keeps desktop project links minimal */
+@media (min-width: 601px) {
+  .projects-list .project-link {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+  }
+  /* Adds a small arrow after View Project */
+.projects-list .project-link::after {
+  content: "↗";
+  margin-left: 8px;
+  color: var(--color-accent);
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+/* Moves the arrow slightly when hovered */
+.projects-list .project-link:hover::after {
+  transform: translate(3px, -3px);
+}
+}
+/* ---------- PROJECT CATEGORY FILTERS ---------- */
+
+/* Arranges the filter buttons in a row */
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+/* Styles each filter button */
+.filter-button {
+  padding: 9px 16px;
+  border: 1px solid var(--color-text);
+  border-radius: 30px;
+
+  background-color: transparent;
+  color: var(--color-text);
+
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Highlights the selected filter in raspberry pink */
+.filter-button.active {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* Adds a subtle hover effect */
+.filter-button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Keeps the selected button text white when hovered */
+.filter-button.active:hover {
+  color: var(--color-white);
 }
 
 
@@ -2056,25 +2143,95 @@ body {
     line-height: 1.1;
   }
 
-  /* Changes the project list into one column */
-  .projects-list {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+/* Displays projects in one vertical column on mobile */
+.projects-list {
+  columns: 1;
+}
 
   /* Keeps each project within the screen */
   .project-item {
     width: 100%;
     min-width: 0;
+    margin-bottom: 20px;
   }
 
-  /* Makes project titles easier to read */
-  .project-item h2 {
-    font-size: 24px;
-    line-height: 1.3;
-  }
+/* Makes project titles more compact on phones */
+.project-item h2 {
+  font-size: 22px;
+  line-height: 1.2;
 }
 
+/* Makes project categories smaller */
+.project-details {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Makes project descriptions easier to read */
+.project-item > p:not(.project-details) {
+  font-size: 14px;
+  line-height: 1.6;
+}
+/* Adds subtle movement when hovering over project images */
+.projects-list .project-image-placeholder {
+  transition: transform 0.3s ease;
+}
+
+/* Gently lifts the image when hovered */
+.projects-list .project-item a:hover .project-image-placeholder {
+  transform: translateY(-6px);
+}
+/* Makes project filters more compact on phones */
+.project-filters {
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+/* Reduces the size of the filter buttons */
+.filter-button {
+  padding: 8px 12px;
+  font-size: 11px;
+  }
+
+/* Makes portrait images fill their rounded containers on mobile */
+.projects-list .project-image-portrait img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  }
+  /* Hides the full project description on mobile */
+.project-description-desktop {
+  display: none;
+}
+
+/* Shows the expandable description on mobile */
+.project-description-mobile {
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Styles the Read more text in charcoal */
+.project-description-mobile summary {
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Keeps the dropdown arrow raspberry pink */
+.project-description-mobile summary::marker {
+  color: var(--color-accent);
+}
+
+/* Styles the description when expanded */
+.project-description-mobile p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 12px;
+  }
+}
 /* ---------- MOBILE ABOUT PAGE ---------- */
 
 /* Adjusts the About page for phones */
