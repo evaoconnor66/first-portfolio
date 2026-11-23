@@ -880,14 +880,19 @@ border-radius: 4px;
   transform: rotate(180deg);
 }
 
-/* Skills displayed when a dropdown opens */
+/* Skills displayed in three flowing columns */
 .skill-accordion-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px 24px;
+  columns: 3;
+  column-gap: 24px;
   list-style: none;
   padding: 0 0 28px;
   margin: 0;
+}
+
+/* Keep each skill together */
+.skill-accordion-list li {
+  break-inside: avoid;
+  margin-bottom: 16px;
 }
 
 /* Individual skills */
@@ -897,11 +902,14 @@ border-radius: 4px;
   color: var(--color-text);
 }
 
-/* Mobile layout */
+/* Skills displayed in one column on mobile */
 @media (max-width: 768px) {
   .skill-accordion-list {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    columns: 1;
+  }
+
+  .skill-accordion-list li {
+    margin-bottom: 12px;
   }
 }
 
