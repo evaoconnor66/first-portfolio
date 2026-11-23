@@ -31,7 +31,7 @@ function About() {
 </div>
 
 <img
-  src="/images/about/eva-portrait.jpeg"
+  src={`${import.meta.env.BASE_URL}images/about/eva-portrait.jpeg`}
   alt="Eva outdoors"
   className="about-portrait"
 />        

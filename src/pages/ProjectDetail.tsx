@@ -132,12 +132,12 @@ shows the content for my photography project
   opportunities for earlier assessment and preventative care.
 </p>
   <img
-    src="/images/equia/equia-research.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-research.png`}
     alt="Equia research into equine back discomfort"
     className="process-image"
   />
   <img
-  src="/images/equia/equia-insights.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-insights.png`}
   alt="Five key research insights informing the Equia design"
   className="process-image"
 />
@@ -151,7 +151,7 @@ shows the content for my photography project
     combination of physical products and a connected digital experience.
   </p>
   <img
-  src="/images/equia/equia-concepts.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-concepts.png`}
   alt="Early Equia concept sketches exploring three design directions"
   className="process-image"
 />
@@ -165,17 +165,17 @@ shows the content for my photography project
     practical usability.
   </p>
   <img
-  src="/images/equia/equia-ergonomics.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-ergonomics.png`}
   alt="Four clay prototypes exploring handheld grip ergonomics, thumb positioning and form refinement"
   className="process-image"
 />
 <img
-  src="/images/equia/equia-rug-prototyping.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-rug-prototyping.png`}
   alt="Recovery rug development showing pattern making, closure refinement, heating placement and physical prototyping"
   className="process-image"
 />
 <img
-  src="/images/equia/equia-electronics.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-electronics.png`}
   alt="Arduino electronics prototyping, including LED feedback, temperature sensing, pressure sensing and circuit development"
   className="process-image"
 />
@@ -196,7 +196,7 @@ shows the content for my photography project
 </p>
 
 <img
-  src="/images/equia/equia-testing.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-testing.png`}
   alt="Ergonomic evaluation of refined handheld scanner prototypes"
   className="process-image"
 />
@@ -211,7 +211,7 @@ shows the content for my photography project
     product.
   </p>
   <img
-  src="/images/equia/equia-exploded-cad.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-exploded-cad.png`}
   alt="Exploded CAD assembly of the Equia handheld scanner showing its components and construction"
   className="process-image"
 />
@@ -226,12 +226,12 @@ shows the content for my photography project
   </p>
   <div className="manufacturing-image-grid">
   <img
-    src="/images/equia/equia-manufacturing-top.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-manufacturing-top.png`}
     alt="CAD showing battery compartment and internal screw mounting"
   />
 
   <img
-    src="/images/equia/equia-manufacturing-bottom.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-manufacturing-bottom.png`}
     alt="CAD showing PCB mounting points and shell construction"
   />
 </div>
@@ -249,19 +249,19 @@ shows the content for my photography project
 
 <div className="assembly-sequence">
   <img
-    src="/images/equia/equia-assembly-01-04.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-assembly-01-04.png`}
     alt="Roller assembly steps 1 to 4"
   />
   <img
-    src="/images/equia/equia-assembly-05-08.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-assembly-05-08.png`}
     alt="Roller assembly steps 5 to 8"
   />
   <img
-    src="/images/equia/equia-assembly-09-12.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-assembly-09-12.png`}
     alt="Roller assembly steps 9 to 12"
   />
   <img
-    src="/images/equia/equia-assembly-13-17.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-assembly-13-17.png`}
     alt="Roller assembly steps 13 to 17"
   />
 </div>
@@ -276,7 +276,7 @@ shows the content for my photography project
 </p>
 
 <img
-  src="/images/equia/equia-disassembly.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-disassembly.png`}
   alt="Four-step Equia handheld scanner disassembly sequence showing access to internal components"
   className="process-image"
 />
@@ -290,7 +290,7 @@ shows the content for my photography project
 </p>
 
 <img
-  src="/images/equia/equia-rug-construction.png"
+  src={`${import.meta.env.BASE_URL}images/equia/equia-rug-construction.png`}
   alt="Equia recovery rug construction showing seven design features and integrated heating and PCM cooling zones"
   className="process-image"
 />
@@ -349,17 +349,17 @@ shows the content for my photography project
 
 <div className="rug-sewing-sequence">
   <img
-    src="/images/equia/equia-rug-sewing-01-04.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-rug-sewing-01-04.png`}
     alt="Recovery rug sewing steps 1 to 4"
   />
 
   <img
-    src="/images/equia/equia-rug-sewing-05-07.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-rug-sewing-05-07.png`}
     alt="Recovery rug sewing steps 5 to 7"
   />
 
   <img
-    src="/images/equia/equia-rug-sewing-08-10.png"
+    src={`${import.meta.env.BASE_URL}images/equia/equia-rug-sewing-08-10.png`}
     alt="Recovery rug sewing steps 8 to 10"
   />
 </div>
@@ -376,15 +376,15 @@ shows the content for my photography project
 
   <div className="prototype-gallery">
     <img
-      src="/images/equia/roller-prototype-finishing.png"
+      src={`${import.meta.env.BASE_URL}images/equia/roller-prototype-finishing.png`}
       alt="Finishing the 3D printed scanner prototype"
     />
     <img
-      src="/images/equia/roller-prototype-handheld.png"
+      src={`${import.meta.env.BASE_URL}images/equia/roller-prototype-handheld.png`}
       alt="Handheld scanner prototype"
     />
     <img
-  src="/images/equia/roller-prototype-final.png"
+  src={`${import.meta.env.BASE_URL}images/equia/roller-prototype-final.png`}
   alt="Final assembled scanner prototype"
   className="prototype-hero-image"
 />
@@ -420,7 +420,7 @@ shows the content for my photography project
 
   {/* Displays my professional portrait */}
   <img
-    src="/images/photography-series/photography-portrait.jpeg"
+    src={`${import.meta.env.BASE_URL}images/photography-series/photography-portrait.jpeg`}
     alt="Professional headshot taken outdoors at the University of Limerick"
     className="photography-image"
   />
@@ -499,7 +499,7 @@ looking overly edited.
 
   {/* Displays my photograph of the Needle sculpture at UL */}
   <img
-    src="/images/photography-series/photography-sculpture.jpeg"
+    src={`${import.meta.env.BASE_URL}images/photography-series/photography-sculpture.jpeg`}
     alt="The Needle sculpture at the University of Limerick at night, reflected in water"
     className="photography-image"
   />
@@ -574,7 +574,7 @@ looking overly edited.
 
   {/* Displays the photograph representing my interests */}
   <img
-    src="/images/photography-series/photography-cover.jpg"
+    src={`${import.meta.env.BASE_URL}images/photography-series/photography-cover.jpg`}
     alt="Flat-lay photograph of my creative hobbies and personal interests"
     className="photography-image"
   />
