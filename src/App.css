@@ -269,6 +269,49 @@ body {
   height: auto;
   object-fit: contain;
 }
+/* Controls the container around each featured project image */
+.featured-projects .project-image-placeholder {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  border-radius: 16px;
+}
+
+/* Displays landscape images at their original proportions */
+.featured-projects .project-image-landscape {
+  height: auto;
+  aspect-ratio: auto;
+}
+
+/* Limits the height of portrait images */
+.featured-projects .project-image-portrait {
+  height: 550px;
+  aspect-ratio: auto;
+}
+
+/* Displays landscape images at full column width */
+.featured-projects .project-cover-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+/* Preserves the original proportions of portrait images */
+.featured-projects .project-image-portrait img {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+}
 
 /* Adds a smooth animation to project cards */
 .project-card {
@@ -310,6 +353,21 @@ body {
   color: var(--color-text);
   opacity: 0.65;
   margin: 0;
+}
+/* Homepage portrait images on mobile */
+@media (max-width: 768px) {
+  .featured-projects .project-image-portrait {
+    height: auto;
+  }
+
+  .featured-projects .project-image-portrait img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 16px;
+  }
 }
 
 /* ==================================================
@@ -1345,73 +1403,217 @@ border-radius: 4px;
 /* ==================================================
    10 - CONTACT PAGE: GET IN TOUCH
 
-   Controls my separate Contact page.
-
    Includes:
-   - Main page heading
-   - Short introduction
-   - Contact links and buttons
-   - Hover effects
+   - Full-height page layout
+   - Two-column introduction and contact card
+   - Location and availability
+   - Interactive contact links
+   - Closing design statement
+   - Mobile responsiveness
    ================================================== */
 
-/* Controls the width and spacing of the Contact page */
-.contact-content {
-  width: 88%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 80px 0;
+/* Keeps the footer at the bottom of the page */
+.contact-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Styles the main Contact page heading */
+/* Controls the overall content width and spacing */
+.contact-content {
+  flex: 1;
+  width: 88%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 0 50px;
+}
+
+/* Creates the two-column layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Main Contact page heading */
 .contact-intro h1 {
   font-size: clamp(40px, 5vw, 64px);
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.1;
-
   color: var(--color-text);
   margin-bottom: 24px;
 }
+/* Highlights part of my Contact page heading in pink */
+.contact-intro h1 span {
+  color: var(--color-accent);
+}
 
-/* Styles the introduction underneath the heading */
-.contact-intro > p:last-child {
-  max-width: 650px;
-
+/* Introduction paragraph */
+.contact-description {
+  max-width: 550px;
   font-size: 18px;
   line-height: 1.7;
-
   color: var(--color-text);
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
-/* Arranges the contact buttons in a row */
-.contact-links {
+/* Location and availability information */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+.contact-info p {
+  margin: 0;
+}
+
+/* Arranges the green dot beside the text */
+.contact-availability {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
+  gap: 10px;
 }
 
-/* Styles each contact link as a button */
-.contact-links a {
+/* Green availability indicator */
+.availability-dot {
+  width: 9px;
+  height: 9px;
+  background-color: #6D9B7A;
+  border-radius: 50%;
   display: inline-block;
-  padding: 14px 24px;
-
-  background-color: var(--color-charcoal);
-  color: var(--color-white);
-
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
-
-  transition: background-color 0.2s ease,
-              transform 0.2s ease;
+  flex-shrink: 0;
 }
 
-/* Changes buttons to pink and lifts them on hover */
-.contact-links a:hover {
-  background-color: var(--color-accent);
-  transform: translateY(-2px);
+/* White contact card */
+.contact-card {
+  background-color: var(--color-white);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #e5e5e5;
+  min-width: 0;
+}
+
+/* Contact card heading */
+.contact-card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 16px;
+}
+
+/* Individual clickable contact rows */
+.contact-method {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid #e5e5e5;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Removes the final divider */
+.contact-method:last-child {
+  border-bottom: none;
+  padding-bottom: 8px;
+}
+
+/* Contact method titles */
+.contact-method h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+/* Contact method descriptions */
+.contact-method p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666666;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Contact icons matching my footer icons */
+.contact-icon {
+  color: var(--color-charcoal);
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+/* Interactive hover effects */
+.contact-method:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+/* Changes the contact icon to pink on hover */
+.contact-method:hover .contact-icon {
+  color: var(--color-accent);
+}
+
+/* Closing design statement */
+.contact-statement {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid #dddddd;
+  text-align: center;
+}
+
+.contact-statement p {
+  font-size: 18px;
+  font-style: italic;
+  color: #666666;
+}
+
+/* My personal handwritten signature */
+.contact-signature {
+  display: block;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* Mobile and tablet responsiveness */
+@media (max-width: 768px) {
+
+  .contact-content {
+    padding: 50px 0 40px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-intro h1 {
+    font-size: 40px;
+  }
+
+  .contact-description {
+    font-size: 16px;
+  }
+
+  .contact-card {
+    padding: 24px;
+  }
+
+  .contact-statement {
+    margin-top: 40px;
+    padding-top: 24px;
+  }
+
+  .contact-statement p {
+    font-size: 16px;
+  }
 }
 
 
@@ -1481,16 +1683,6 @@ border-radius: 4px;
   object-fit: contain;
 }
 
-/* Styles videos within the main project area */
-.project-detail-image .project-video {
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-  margin: 0 auto;
-  border-radius: 12px;
-}
-
 /* Adds spacing between the main case study sections */
 .project-overview,
 .project-process,
@@ -1539,6 +1731,252 @@ border-radius: 4px;
 .back-to-projects:hover {
   color: var(--color-accent);
 }
+/* ---------- REUSABLE PROJECT SUMMARY ---------- */
+
+/* Arranges project information into four equal columns */
+.project-quick-info {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px;
+  padding: 30px 0;
+  margin: 40px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Styles the small raspberry category labels */
+.project-info-item span {
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Styles the information underneath each label */
+.project-info-item p {
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
+/* Changes the summary to two columns on mobile */
+@media (max-width: 768px) {
+  .project-quick-info {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin: 25px 0;
+    padding: 24px 0;
+  }
+
+  .project-info-item p {
+    font-size: 14px;
+  }
+}
+/* ---------- REUSABLE PROJECT OVERVIEW ---------- */
+
+/* Creates two equal columns for the project overview */
+.project-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 80px;
+  margin: 50px 0;
+}
+
+/* Small pink section labels */
+.project-section-label {
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Overview headings */
+.project-overview-item h2 {
+  font-size: 28px;
+  margin: 12px 0 20px;
+}
+
+/* Overview paragraphs */
+.project-overview-item p {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+/* Removes the default bullet points */
+.project-contribution-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styles each contribution */
+.project-contribution-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/* Adds pink checkmarks */
+.project-contribution-list li::before {
+  content: "✓";
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* Stacks the sections on mobile */
+@media (max-width: 768px) {
+  .project-overview-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin: 30px 0;
+  }
+
+  .project-overview-item h2 {
+    font-size: 24px;
+  }
+}
+/* ---------- REUSABLE PROJECT OUTCOME ---------- */
+
+/* Creates spacing around the featured outcome */
+.project-featured-outcome {
+  margin: 50px 0;
+  padding: 40px 0;
+  border-top: 1px solid #ddd;
+}
+
+/* Matches the other project headings */
+.project-featured-outcome h2 {
+  font-size: 28px;
+  margin: 12px 0 20px;
+}
+
+/* Keeps the outcome description readable */
+.project-featured-outcome > p {
+  max-width: 800px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Styles the photograph caption */
+.project-featured-outcome .project-outcome-caption {
+  max-width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+}
+
+/* Adjusts spacing and headings on mobile */
+@media (max-width: 768px) {
+  .project-featured-outcome {
+    margin: 30px 0;
+    padding: 25px 0;
+  }
+
+  .project-featured-outcome h2 {
+    font-size: 24px;
+  }
+}
+/* ---------- REUSABLE PROJECT DOCUMENTATION INTRO ---------- */
+
+/* Creates a clear transition into the project documentation */
+.project-documentation-intro {
+  border-top: 1px solid #ddd;
+  padding-top: 30px;
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+
+/* Matches the other project section headings */
+.project-documentation-intro h2 {
+  font-size: 28px;
+  margin: 12px 0 20px;
+}
+
+/* Keeps the introduction readable */
+.project-documentation-intro p {
+  max-width: 750px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Adjusts the documentation introduction on mobile */
+@media (max-width: 768px) {
+  .project-documentation-intro {
+    padding-top: 25px;
+  }
+
+  .project-documentation-intro h2 {
+    font-size: 24px;
+  }
+}
+/* ---------- REUSABLE PROJECT BLOG DROPDOWNS ---------- */
+
+/* Creates a subtle divider between expandable sections */
+.project-blog {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Arranges the clickable heading and arrow */
+.project-blog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Removes the browser's default dropdown arrow */
+.project-blog-heading::-webkit-details-marker {
+  display: none;
+}
+
+/* Styles the blog title */
+.project-blog .project-blog-heading h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+/* Styles the short blog description */
+.project-blog .project-blog-heading p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Styles the custom dropdown arrow */
+.project-blog-chevron {
+  color: var(--color-accent);
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+/* Rotates the arrow when the blog is expanded */
+.project-blog[open] .project-blog-chevron {
+  transform: rotate(180deg);
+}
+
+/* Adds spacing around the expanded blog content */
+.project-blog-content {
+  padding: 16px 0 40px;
+}
+
+/* Adjusts the blog headings for mobile */
+@media (max-width: 768px) {
+  .project-blog .project-blog-heading h3 {
+    font-size: 18px;
+  }
+}
 
 
 /* ==================================================
@@ -1552,7 +1990,31 @@ border-radius: 4px;
    Additional styling can be added here as the
    case study develops.
    ================================================== */
+/* Controls portrait cover images on individual project pages */
+.project-detail-image .project-detail-portrait {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 550px;
+  object-fit: contain;
+  border-radius: 16px;
+  margin: 0 auto;
+}
 
+/* Removes the oversized background around portrait covers */
+.project-detail-image:has(.project-detail-portrait) {
+  background: transparent;
+  height: auto;
+  aspect-ratio: auto;
+}
+
+/* Adjusts portrait cover images for mobile screens */
+@media (max-width: 768px) {
+  .project-detail-image .project-detail-portrait {
+    max-height: 400px;
+  }
+}
 
 
 
@@ -1765,71 +2227,176 @@ border-radius: 4px;
    All photography-specific styling stays here.
    ================================================== */
 
+/* ---------- PHOTOGRAPHY DOCUMENTATION ---------- */
 
-/* ---------- PHOTOGRAPHY IMAGES ---------- */
-
-/* Displays photographs without cropping or stretching */
-.photography-image {
-  display: block;
-  width: 100%;
-  max-width: 550px;
-  height: auto;
-  margin: 24px auto;
-  border-radius: 8px;
+/* Arranges the documentation into three columns */
+.photography-detail-columns {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1.2fr;
+  gap: 40px;
+  align-items: start;
 }
 
-/* ---------- PHOTOGRAPHY STAGES ---------- */
-
-/* Adds space between the individual photography stages */
-.photography-stage {
-  margin-top: 80px;
-  margin-bottom: 80px;
-}
-
-/* Styles the numbered headings for each photograph */
-.photography-stage h3 {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-  margin-bottom: 32px;
-}
-
-/* ---------- CAMERA SETTINGS & EDITING ---------- */
-
-/* Creates space underneath the settings and editing headings */
+/* Styles all three documentation headings */
+.photography-creative h4,
 .photography-settings h4,
 .photography-editing h4 {
   position: relative;
+  font-size: 18px;
   padding-bottom: 14px;
+  margin-top: 0;
   margin-bottom: 20px;
 }
 
 /* Creates a short pink line underneath each heading */
+.photography-creative h4::after,
 .photography-settings h4::after,
 .photography-editing h4::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
-
   width: 90px;
   height: 3px;
-
   background-color: var(--color-accent);
   border-radius: 2px;
 }
 
+/* Keeps the documentation text readable */
+.photography-detail-columns p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Stacks the documentation columns on mobile */
+@media (max-width: 768px) {
+  .photography-detail-columns {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+/* ---------- PHOTOGRAPHY COLLECTION GALLERY ---------- */
+
+/* Displays the three photographs in equal columns */
+.photography-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin: 40px 0 60px;
+}
+
+/* Keeps each photograph and its information together */
+.photography-card {
+  min-width: 0;
+}
+
+/* Gives the photographs consistent proportions */
+.photography-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+/* Styles the photograph titles */
+.photography-card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+/* Styles the short photography descriptions */
+.photography-card p {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+}
+
+/* Stacks the photographs vertically on mobile */
+@media (max-width: 768px) {
+  .photography-gallery {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin: 30px 0;
+  }
+}
+/* ---------- PHOTOGRAPHY DROPDOWN BUTTONS ---------- */
+
+/* Creates a rounded button with a pink outline */
+.photography-explore-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  border-radius: 30px;
+  color: var(--color-accent);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Fills the button pink when hovered or opened */
+.photography-explore-button:hover,
+.photography-explore-button[aria-expanded="true"] {
+  background-color: var(--color-accent);
+  color: white;
+}
+/* ---------- RESPONSIVE PHOTOGRAPHY LAYOUT ---------- */
+
+/* Keeps all three photographs in the first row on desktop */
+.photography-gallery > .photography-card {
+  grid-row: 1;
+}
+
+.photography-card-1 {
+  grid-column: 1;
+}
+
+.photography-card-2 {
+  grid-column: 2;
+}
+
+.photography-card-3 {
+  grid-column: 3;
+}
+
+/* Displays the selected documentation across the full second row */
+.photography-gallery > .photography-stage {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  min-width: 0;
+  margin: 0;
+}
+
+/* Places documentation directly below its photograph on mobile */
+@media (max-width: 768px) {
+  .photography-gallery > .photography-card,
+  .photography-gallery > .photography-stage {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
 
 /* ==================================================
-   16 - VIDEO PRODUCTION: CASE STUDY
+   16 - CLICK INTO THE MOMENT: CASE STUDY
 
-   Controls styling unique to my video project.
+   Controls styling unique to my video production project.
 
    Includes:
-   - Main project video
-   - Responsive video display
-   - Space for future project content
+   - Main promotional video
+   - Storyboard and production images
+   - Developed film photographs
+   - Featured outcome gallery
+   - Academic blog entries
+   - Responsive and mobile styling
 
    Shared project styling is in Section 11.
    ================================================== */
@@ -1847,12 +2414,14 @@ border-radius: 4px;
   border-radius: 12px;
 }
 
+/* Removes extra margins inside the main video container */
+.project-detail-image .project-video {
+  margin: 0 auto;
+}
 
-/* Keeps the video within its container on smaller screens */
-@media (max-width: 768px) {
-  .project-video {
-    max-width: 100%;
-  }
+/* Removes the white background behind the video */
+.project-detail-image:has(.project-video) {
+  background-color: transparent;
 }
 
 
@@ -1868,7 +2437,7 @@ border-radius: 4px;
   border-radius: 12px;
 }
 
-/* Keeps the portrait storyboard compact and centred */
+/* Keeps the portrait storyboard compact */
 .video-storyboard-image {
   max-width: 500px;
 }
@@ -1883,13 +2452,15 @@ border-radius: 4px;
   line-height: 1.5;
 }
 
-/* Keeps the behind-the-scenes photograph smaller and centred */
+/* Keeps behind-the-scenes photographs compact */
 .video-behind-scenes-image {
   max-width: 500px;
 }
 
-/* ---------- DEVELOPED FILM PHOTO GRID ---------- */
-/* Arranges the four film photographs into two columns */
+
+/* ---------- BLOG FILM PHOTO GALLERY ---------- */
+
+/* Arranges the blog photographs into two columns */
 .video-film-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1898,7 +2469,7 @@ border-radius: 4px;
   margin: 32px auto 48px;
 }
 
-/* Makes all four photographs the same size */
+/* Keeps the film photographs consistently sized */
 .video-film-grid img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -1907,6 +2478,20 @@ border-radius: 4px;
   display: block;
 }
 
+
+/* ---------- FEATURED OUTCOME GALLERY ---------- */
+
+/* Displays the featured photographs in one compact row */
+.project-featured-outcome .video-film-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 100%;
+  margin: 30px auto;
+}
+
+
+/* ---------- ACADEMIC BLOG STYLING ---------- */
+
 /* Separates the two video production blog entries */
 .video-blog-divider {
   border: none;
@@ -1914,12 +2499,7 @@ border-radius: 4px;
   margin: 64px 0 48px;
 }
 
-/* Removes the white background from the video project only */
-.project-detail-image:has(.project-video) {
-  background-color: transparent;
-}
-
-/* Adds breathing room between video project sections */
+/* Adds spacing between blog headings */
 .video-project h3 {
   margin-top: 36px;
   margin-bottom: 16px;
@@ -1929,6 +2509,26 @@ border-radius: 4px;
 .video-project p {
   line-height: 1.7;
   margin-bottom: 18px;
+}
+
+
+/* ---------- VIDEO PROJECT MOBILE STYLES ---------- */
+
+@media (max-width: 768px) {
+
+/* Keeps the video within the screen */
+.project-video,
+.project-detail-image .project-video {
+  max-width: 100%;
+  height: auto;
+}
+
+  /* Displays featured photographs in two columns */
+  .project-featured-outcome .video-film-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
 }
 
 
@@ -2357,12 +2957,6 @@ border-radius: 4px;
 
   /* Keeps main project images within the screen */
   .project-detail-image img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* Keeps project videos responsive */
-  .project-detail-image .project-video {
     max-width: 100%;
     height: auto;
   }

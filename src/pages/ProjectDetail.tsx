@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import { Link, useParams } from "react-router";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -9,7 +9,8 @@ import { projects } from "../data/projects";
 function ProjectDetail() {
   // Gets the project ID from the website URL
   const { id } = useParams();
-
+// Remembers which photograph the visitor has selected
+const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
 // Finds the project that matches the ID in the URL
 const project = projects.find((project) => project.id === id);
 
@@ -49,25 +50,11 @@ const project = projects.find((project) => project.id === id);
 
 </section>
 
-
-{/* OLD CODE — displayed a cover image on every project page
-
-<div className="project-detail-image">
-  {project.image ? (
-    <img
-      src={project.image}
-      alt={`${project.title} final design`}
-      className="project-cover-image"
-    />
-  ) : (
-    "Image Placeholder"
-  )}
-</div>
-
-*/}
-
-{/* NEW CODE — displays the video for Click Into the Moment */}
+{/* displays the video for Click Into the Moment */}
 {/* All other projects continue displaying their original cover images */}
+
+{/* Hides the main cover image on the photography project only */}
+{project.id !== "photography-series" && (
 
 <div className="project-detail-image">
   {project.id === "click-into-the-moment" ? (
@@ -88,20 +75,23 @@ const project = projects.find((project) => project.id === id);
 
   ) : project.image ? (
 
-    // Shows the cover image for every other project
-    <img
-      src={project.image}
-      alt={`${project.title} project cover`}
-      className="project-cover-image"
-    />
+// Shows the cover image for every other project
+<img
+  src={project.image}
+  alt={`${project.title} project cover`}
+  className={`project-cover-image ${
+    project.id === "nos-nua" ? "project-detail-portrait" : ""
+  }`}
+/>
 
   ) : (
     "Image Placeholder"
   )}
 </div>
+)}
 
 {/*============================================
-shows the content for my photography project 
+shows the content for my equia 
 ============================================*/}
 
 {/* Displays the Equia case study only on the Equia page */}
@@ -405,250 +395,390 @@ shows the content for my photography project
 )}
 
 {/*============================================
-shows the content for my photography project 
+shows the content for my photography project
 ============================================*/}
 
 {/* Displays extra content only for my Photographic Series project */}
 {project.id === "photography-series" && (
   <section className="photography-project">
 
-    {/* Displays the first photograph from my assignment */}
-<div className="photography-stage">
+    {/* Provides a quick overview of my photography project */}
+    <div className="project-quick-info">
 
-  {/* Identifies the photograph */}
-  <h3>01 - Professional Headshot</h3>
+      <div className="project-info-item">
+        <span>My Role</span>
+        <p>Photographer & Editor</p>
+      </div>
 
-  {/* Displays my professional portrait */}
-  <img
-    src={`${import.meta.env.BASE_URL}images/photography-series/photography-portrait.jpeg`}
-    alt="Professional headshot taken outdoors at the University of Limerick"
-    className="photography-image"
-  />
+      <div className="project-info-item">
+        <span>Project Type</span>
+        <p>Individual University Project</p>
+      </div>
 
-{/* Explains the creative decisions behind my professional headshot */}
-<p>
-For my professional headshot, I wanted to create something that felt confident,
-creative and approachable, while still looking professional enough for my portfolio. 
-I chose to take the photograph at the University of Limerick because I liked the 
-natural lighting and how the autumn colours complemented my hair. I wore a simple 
-black top to keep the focus on my face without distracting from the background.
-When composing the photograph, I used the 3 × 3 grid on my phone to help position 
-myself within the frame. I also experimented with cropping and editing to create a 
-more balanced image. I reduced the highlights and slightly increased the shadows to 
-improve the lighting, while adjusting the portrait depth to make the blur around my 
-hair look more natural. I wanted the final photograph to feel polished without 
-looking overly edited.
-</p>
+      <div className="project-info-item">
+        <span>Equipment</span>
+        <p>iPhone 17 Pro Max & Tripod</p>
+      </div>
 
-{/* Shows the technical camera settings used for my portrait */}
-<div className="photography-settings">
+      <div className="project-info-item">
+        <span>Deliverable</span>
+        <p>Three Photographic Compositions</p>
+      </div>
 
-  <h4>Camera Settings</h4>
+    </div>
 
-  <p>
-    <strong>Camera:</strong> iPhone 17 Pro Max
-  </p>
+    {/* Introduces the photography assignment and creative focus */}
+    <div className="project-overview-grid">
 
-  <p>
-    <strong>Focal Length:</strong> 48 mm equivalent
-  </p>
+      <div className="project-overview-item">
+        <span className="project-section-label">
+          01 — The Brief
+        </span>
 
-  <p>
-    <strong>Aperture:</strong> f/1.78
-  </p>
+        <h2>The challenge</h2>
 
-  <p>
-    <strong>ISO:</strong> 100
-  </p>
+        <p>
+          Create three photographs exploring professional identity,
+          aesthetic composition and personal passions through
+          photography and visual storytelling.
+        </p>
+      </div>
 
-  <p>
-    <strong>Shutter Speed:</strong> 1/657 sec
-  </p>
+      <div className="project-overview-item">
+        <span className="project-section-label">
+          02 — Creative Focus
+        </span>
 
-</div>
+        <h2>Skills explored</h2>
 
-{/* Explains the editing adjustments I made to my portrait */}
-<div className="photography-editing">
+        <ul className="project-contribution-list">
+          <li>Composition & framing</li>
+          <li>Natural & artificial lighting</li>
+          <li>Camera settings & exposure</li>
+          <li>Photo editing & colour adjustment</li>
+        </ul>
+      </div>
 
-  <h4>Editing & Adjustments</h4>
+    </div>
 
-  <p>
-    I wanted to improve the lighting without making the photograph
-    look overly edited. I reduced the highlights to balance the
-    brighter areas and increased the shadows to bring out more
-    detail. I also adjusted the portrait depth because the original
-    background blur made the edges of my hair look unnatural.
-    Increasing the depth setting helped create a softer, more
-    realistic finish.
-  </p>
+    {/* ---------- PHOTOGRAPHY COLLECTION ---------- */}
 
-  {/* Lists the exact adjustments used when editing */}
-  <p><strong>Highlights:</strong> -15</p>
-  <p><strong>Shadows:</strong> +10</p>
-  <p><strong>Portrait Depth:</strong> f/4.5 to f/5.6</p>
+    <div className="project-documentation-intro">
+      <span className="project-section-label">
+        03 — The Collection
+      </span>
 
-</div>
+      <h2>Three perspectives</h2>
 
-</div>
+      <p>
+        Exploring identity, atmosphere and personal interests
+        through three different photographic styles.
+      </p>
+    </div>
 
-{/* Displays the second photograph from my assignment */}
-<div className="photography-stage">
+    {/* Displays photographs and their expandable documentation */}
+    <div className="photography-gallery">
 
-  {/* Identifies my nighttime photography project */}
-  <h3>02 - Aesthetic Photograph</h3>
+      {/* ---------- PHOTOGRAPH 01: PROFESSIONAL HEADSHOT ---------- */}
 
-  {/* Displays my photograph of the Needle sculpture at UL */}
-  <img
-    src={`${import.meta.env.BASE_URL}images/photography-series/photography-sculpture.jpeg`}
-    alt="The Needle sculpture at the University of Limerick at night, reflected in water"
-    className="photography-image"
-  />
+      <div className="photography-card photography-card-1">
 
-{/* Explains my creative decisions and composition for the nighttime photograph */}
-<p>
-  For my aesthetic photograph, I wanted to experiment with
-  nighttime photography, particularly how lights reflect off
-  water. I was drawn to the Needle sculpture at the University
-  of Limerick because I liked its movement and the way it
-  reflected in the water below.
+        <img
+          src={`${import.meta.env.BASE_URL}images/photography-series/photography-portrait.jpeg`}
+          alt="Professional headshot taken outdoors at UL"
+        />
 
-  I positioned the sculpture in the centre of the frame and
-  stepped back to include the surrounding trees and lighting.
-  I really liked the contrast between the warm yellow
-  streetlights and the dark night sky. The reflections helped
-  bring everything together, creating a balanced composition
-  with a calm, peaceful atmosphere.
-</p>
+        <span className="project-section-label">01</span>
+        <h3>Professional Headshot</h3>
+        <p>Portrait photography</p>
 
-{/* Shows the camera settings used for my nighttime photograph */}
-<div className="photography-settings">
+        {/* Opens or closes the professional headshot details */}
+        <button
+          className="photography-explore-button"
+          onClick={() => setSelectedPhoto(selectedPhoto === 1 ? null : 1)}
+          aria-expanded={selectedPhoto === 1}
+        >
+          {selectedPhoto === 1 ? "Close details ↑" : "Explore photograph ↓"}
+        </button>
 
-  <h4>Camera Settings</h4>
+      </div>
 
-  <p><strong>Camera:</strong> iPhone 17 Pro Max</p>
+      {/* Displays the headshot documentation when selected */}
+      {selectedPhoto === 1 && (
+        <div className="photography-stage">
 
-  <p><strong>Focal Length:</strong> 48 mm equivalent</p>
+          <h3>01 - Professional Headshot</h3>
 
-  <p><strong>Aperture:</strong> f/1.78</p>
+          {/* Arranges the documentation into three columns */}
+          <div className="photography-detail-columns">
 
-  <p><strong>ISO:</strong> 1600</p>
+            {/* Explains my creative decisions */}
+            <div className="photography-creative">
 
-  <p><strong>Shutter Speed:</strong> 1/17 sec</p>
+              <h4>Creative Decisions</h4>
 
-  <p><strong>Lighting:</strong> Existing streetlights, no flash</p>
+              <p>
+                For my professional headshot, I wanted to create something that felt confident,
+                creative and approachable, while still looking professional enough for my portfolio.
+                I chose to take the photograph at the University of Limerick because I liked the
+                natural lighting and how the autumn colours complemented my hair. I wore a simple
+                black top to keep the focus on my face without distracting from the background.
+                When composing the photograph, I used the 3 × 3 grid on my phone to help position
+                myself within the frame. I also experimented with cropping and editing to create a
+                more balanced image. I reduced the highlights and slightly increased the shadows to
+                improve the lighting, while adjusting the portrait depth to make the blur around my
+                hair look more natural. I wanted the final photograph to feel polished without
+                looking overly edited.
+              </p>
 
-</div>
+            </div>
 
-{/* Explains how I edited my nighttime photograph */}
-<div className="photography-editing">
+            {/* Shows the technical camera settings */}
+            <div className="photography-settings">
 
-  <h4>Editing & Adjustments</h4>
+              <h4>Camera Settings</h4>
 
-  <p>
-    When editing this photograph, I wanted to keep the warm,
-    peaceful atmosphere while improving the overall image.
-    I reduced the highlights to stop the streetlights from
-    appearing too bright and adjusted the warmth to tone down
-    some of the strong yellow lighting. I also applied noise
-    reduction to make the darker areas look less grainy.
-    Finally, I cropped out the brick paving at the bottom
-    so the water became the foreground, giving the
-    photograph a cleaner composition.
-  </p>
+              <p><strong>Camera:</strong> iPhone 17 Pro Max</p>
+              <p><strong>Focal Length:</strong> 48 mm equivalent</p>
+              <p><strong>Aperture:</strong> f/1.78</p>
+              <p><strong>ISO:</strong> 100</p>
+              <p><strong>Shutter Speed:</strong> 1/657 sec</p>
 
-  {/* Lists the exact editing adjustments from my assignment */}
-  <p><strong>Highlights:</strong> -30</p>
-  <p><strong>Warmth:</strong> -15</p>
-  <p><strong>Noise Reduction:</strong> 20</p>
-  <p><strong>Cropping:</strong> Removed brick paving from the bottom</p>
+            </div>
 
-</div>
+            {/* Explains the editing adjustments */}
+            <div className="photography-editing">
 
-</div>
+              <h4>Editing & Adjustments</h4>
 
-{/* Displays the third photograph from my assignment */}
-<div className="photography-stage">
+              <p>
+                I wanted to improve the lighting without making the photograph
+                look overly edited. I reduced the highlights to balance the
+                brighter areas and increased the shadows to bring out more
+                detail. I also adjusted the portrait depth because the original
+                background blur made the edges of my hair look unnatural.
+                Increasing the depth setting helped create a softer, more
+                realistic finish.
+              </p>
 
-  {/* Introduces my flat-lay photograph */}
-  <h3>03 - My Passions</h3>
+              {/* Lists the exact adjustments used when editing */}
+              <p><strong>Highlights:</strong> -15</p>
+              <p><strong>Shadows:</strong> +10</p>
+              <p><strong>Portrait Depth:</strong> f/4.5 to f/5.6</p>
 
-  {/* Displays the photograph representing my interests */}
-  <img
-    src={`${import.meta.env.BASE_URL}images/photography-series/photography-cover.jpg`}
-    alt="Flat-lay photograph of my creative hobbies and personal interests"
-    className="photography-image"
-  />
+            </div>
 
-{/* Explains the inspiration and composition behind my flat-lay photograph */}
-<p>
-  For my final photograph, I wanted to capture the different
-  things I am passionate about. I have so many interests that
-  I found it difficult to choose just one, so I decided to
-  bring them together in a single image that represents who
-  I am.
+          </div>
 
-  I created a flat-lay composition using objects from my
-  hobbies, including horse riding, painting, drawing, sewing,
-  baking and beauty. I chose a white background to help the
-  colourful objects stand out and arranged them loosely by
-  category, allowing some to overlap to bring everything
-  together. I experimented with several different layouts
-  before choosing the final arrangement, as I felt it best
-  represented my personality while still creating a balanced
-  composition.
-</p>
+        </div>
+      )}
 
-{/* Shows the camera settings and equipment used for my flat-lay photograph */}
-<div className="photography-settings">
+      {/* ---------- PHOTOGRAPH 02: AESTHETIC PHOTOGRAPH ---------- */}
 
-  <h4>Camera Settings</h4>
+      <div className="photography-card photography-card-2">
 
-  <p><strong>Camera:</strong> iPhone 17 Pro Max</p>
+        <img
+          src={`${import.meta.env.BASE_URL}images/photography-series/photography-sculpture.jpeg`}
+          alt="The Needle sculpture reflected in water at night"
+        />
 
-  <p><strong>Camera App:</strong> Lumina</p>
+        <span className="project-section-label">02</span>
+        <h3>Aesthetic Photograph</h3>
+        <p>Nighttime photography & reflections</p>
 
-  <p><strong>Focal Length:</strong> 48 mm equivalent</p>
+        {/* Opens or closes the aesthetic photograph details */}
+        <button
+          className="photography-explore-button"
+          onClick={() => setSelectedPhoto(selectedPhoto === 2 ? null : 2)}
+          aria-expanded={selectedPhoto === 2}
+        >
+          {selectedPhoto === 2 ? "Close details ↑" : "Explore photograph ↓"}
+        </button>
 
-  <p><strong>Aperture:</strong> f/1.8</p>
+      </div>
 
-  <p><strong>ISO:</strong> 100</p>
+      {/* Displays the aesthetic photograph documentation when selected */}
+      {selectedPhoto === 2 && (
+        <div className="photography-stage">
 
-  <p><strong>Shutter Speed:</strong> 1/100 sec</p>
+          <h3>02 - Aesthetic Photograph</h3>
 
-  <p><strong>Lighting:</strong> Natural daylight, no flash</p>
+          {/* Arranges the documentation into three columns */}
+          <div className="photography-detail-columns">
 
-  <p><strong>Equipment:</strong> Tripod</p>
+            {/* Explains my creative decisions and composition */}
+            <div className="photography-creative">
 
-</div>
+              <h4>Creative Decisions</h4>
 
-{/* Explains how I edited my flat-lay photograph */}
-<div className="photography-editing">
+              <p>
+                For my aesthetic photograph, I wanted to experiment with
+                nighttime photography, particularly how lights reflect off
+                water. I was drawn to the Needle sculpture at the University
+                of Limerick because I liked its movement and the way it
+                reflected in the water below.
 
-  <h4>Editing & Adjustments</h4>
+                I positioned the sculpture in the centre of the frame and
+                stepped back to include the surrounding trees and lighting.
+                I really liked the contrast between the warm yellow
+                streetlights and the dark night sky. The reflections helped
+                bring everything together, creating a balanced composition
+                with a calm, peaceful atmosphere.
+              </p>
 
-  <p>
-    When editing this photograph, I wanted the background
-    to appear as white as possible while keeping the colours
-    of the objects bright and natural. I adjusted the exposure,
-    brilliance and shadows to brighten the image, then
-    increased the contrast, vibrance and definition to help
-    the colours and smaller details stand out. I also reduced
-    the highlights to prevent the brighter areas from
-    looking too harsh.
-  </p>
+            </div>
 
-  {/* Lists the exact editing adjustments from my assignment */}
-  <p><strong>Exposure:</strong> +5</p>
-  <p><strong>Brilliance:</strong> +15</p>
-  <p><strong>Shadows:</strong> +10</p>
-  <p><strong>Contrast:</strong> +5</p>
-  <p><strong>Vibrance:</strong> +10</p>
-  <p><strong>Definition:</strong> +10</p>
-  <p><strong>Highlights:</strong> -10</p>
+            {/* Shows the camera settings used for my nighttime photograph */}
+            <div className="photography-settings">
 
-</div>
+              <h4>Camera Settings</h4>
 
-</div>
+              <p><strong>Camera:</strong> iPhone 17 Pro Max</p>
+              <p><strong>Focal Length:</strong> 48 mm equivalent</p>
+              <p><strong>Aperture:</strong> f/1.78</p>
+              <p><strong>ISO:</strong> 1600</p>
+              <p><strong>Shutter Speed:</strong> 1/17 sec</p>
+              <p><strong>Lighting:</strong> Existing streetlights, no flash</p>
+
+            </div>
+
+            {/* Explains how I edited my nighttime photograph */}
+            <div className="photography-editing">
+
+              <h4>Editing & Adjustments</h4>
+
+              <p>
+                When editing this photograph, I wanted to keep the warm,
+                peaceful atmosphere while improving the overall image.
+                I reduced the highlights to stop the streetlights from
+                appearing too bright and adjusted the warmth to tone down
+                some of the strong yellow lighting. I also applied noise
+                reduction to make the darker areas look less grainy.
+                Finally, I cropped out the brick paving at the bottom
+                so the water became the foreground, giving the
+                photograph a cleaner composition.
+              </p>
+
+              {/* Lists the exact editing adjustments from my assignment */}
+              <p><strong>Highlights:</strong> -30</p>
+              <p><strong>Warmth:</strong> -15</p>
+              <p><strong>Noise Reduction:</strong> 20</p>
+              <p><strong>Cropping:</strong> Removed brick paving from the bottom</p>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
+      {/* ---------- PHOTOGRAPH 03: MY PASSIONS ---------- */}
+
+      <div className="photography-card photography-card-3">
+
+        <img
+          src={`${import.meta.env.BASE_URL}images/photography-series/photography-cover.jpg`}
+          alt="Flat-lay composition representing my personal interests"
+        />
+
+        <span className="project-section-label">03</span>
+        <h3>My Passions</h3>
+        <p>Creative flat-lay photography</p>
+
+        {/* Opens or closes the personal passions photograph details */}
+        <button
+          className="photography-explore-button"
+          onClick={() => setSelectedPhoto(selectedPhoto === 3 ? null : 3)}
+          aria-expanded={selectedPhoto === 3}
+        >
+          {selectedPhoto === 3 ? "Close details ↑" : "Explore photograph ↓"}
+        </button>
+
+      </div>
+
+      {/* Displays the personal passions documentation when selected */}
+      {selectedPhoto === 3 && (
+        <div className="photography-stage">
+
+          <h3>03 - My Passions</h3>
+
+          {/* Arranges the documentation into three columns */}
+          <div className="photography-detail-columns">
+
+            {/* Explains the inspiration and composition */}
+            <div className="photography-creative">
+
+              <h4>Creative Decisions</h4>
+
+              <p>
+                For my final photograph, I wanted to capture the different
+                things I am passionate about. I have so many interests that
+                I found it difficult to choose just one, so I decided to
+                bring them together in a single image that represents who
+                I am.
+
+                I created a flat-lay composition using objects from my
+                hobbies, including horse riding, painting, drawing, sewing,
+                baking and beauty. I chose a white background to help the
+                colourful objects stand out and arranged them loosely by
+                category, allowing some to overlap to bring everything
+                together. I experimented with several different layouts
+                before choosing the final arrangement, as I felt it best
+                represented my personality while still creating a balanced
+                composition.
+              </p>
+
+            </div>
+
+            {/* Shows the camera settings and equipment */}
+            <div className="photography-settings">
+
+              <h4>Camera Settings</h4>
+
+              <p><strong>Camera:</strong> iPhone 17 Pro Max</p>
+              <p><strong>Camera App:</strong> Lumina</p>
+              <p><strong>Focal Length:</strong> 48 mm equivalent</p>
+              <p><strong>Aperture:</strong> f/1.8</p>
+              <p><strong>ISO:</strong> 100</p>
+              <p><strong>Shutter Speed:</strong> 1/100 sec</p>
+              <p><strong>Lighting:</strong> Natural daylight, no flash</p>
+              <p><strong>Equipment:</strong> Tripod</p>
+
+            </div>
+
+            {/* Explains how I edited my flat-lay photograph */}
+            <div className="photography-editing">
+
+              <h4>Editing & Adjustments</h4>
+
+              <p>
+                When editing this photograph, I wanted the background
+                to appear as white as possible while keeping the colours
+                of the objects bright and natural. I adjusted the exposure,
+                brilliance and shadows to brighten the image, then
+                increased the contrast, vibrance and definition to help
+                the colours and smaller details stand out. I also reduced
+                the highlights to prevent the brighter areas from
+                looking too harsh.
+              </p>
+
+              {/* Lists the exact editing adjustments from my assignment */}
+              <p><strong>Exposure:</strong> +5</p>
+              <p><strong>Brilliance:</strong> +15</p>
+              <p><strong>Shadows:</strong> +10</p>
+              <p><strong>Contrast:</strong> +5</p>
+              <p><strong>Vibrance:</strong> +10</p>
+              <p><strong>Definition:</strong> +10</p>
+              <p><strong>Highlights:</strong> -10</p>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
+    </div>
 
   </section>
 )}
@@ -660,10 +790,145 @@ shows the content for my video production
 
 {/* Displays my video production project only on its own page */}
 {project.id === "click-into-the-moment" && (
-  <section className="video-project">
+ 
+ <section className="video-project">
+{/* Quick project summary for portfolio visitors */}
+<div className="project-quick-info">
 
-{/* Introduces the group production blog */}
-<h2>Blog 1 — Group Video Production</h2>
+  <div className="project-info-item">
+    <span>My Role</span>
+    <p>Director & Scriptwriter</p>
+  </div>
+
+  <div className="project-info-item">
+    <span>Project Type</span>
+    <p>Collaborative University Project</p>
+  </div>
+
+  <div className="project-info-item">
+    <span>Tools</span>
+    <p>Easypix 35mm, iPhone & CapCut</p>
+  </div>
+
+  <div className="project-info-item">
+    <span>Deliverable</span>
+    <p>2-minute Promotional Film</p>
+  </div>
+
+</div>
+{/* Quick project overview for portfolio visitors */}
+<div className="project-overview-grid">
+
+  <div className="project-overview-item">
+    <span className="project-section-label">
+      01 — The Brief
+    </span>
+
+    <h2>The challenge</h2>
+
+    <p>
+      Create a promotional video for a product
+      of our choice, using visual storytelling
+      to communicate its appeal to a target audience.
+    </p>
+
+    <p>
+      Our group selected the Easypix 35mm film
+      camera, exploring friendship, nostalgia
+      and the value of capturing everyday moments.
+    </p>
+  </div>
+
+  <div className="project-overview-item">
+    <span className="project-section-label">
+      02 — My Contribution
+    </span>
+
+    <h2>What I did</h2>
+
+    <ul className="project-contribution-list">
+      <li>Creative direction</li>
+      <li>Scriptwriting & scene planning</li>
+      <li>Directing & filming</li>
+      <li>Analogue photography</li>
+      <li>Production coordination & reporting</li>
+    </ul>
+  </div>
+
+</div>
+
+{/* Featured project outcome */}
+<section className="project-featured-outcome">
+
+  <span className="project-section-label">
+    03 — The Outcome
+  </span>
+
+  <h2>Memories on 35mm</h2>
+
+  <p>
+    A two-minute promotional film combining digital
+    filmmaking with authentic analogue photography,
+    celebrating friendship and everyday memories.
+  </p>
+
+  {/* Gallery of original developed film photographs */}
+  <div className="video-film-grid">
+
+    <img
+      src={`${import.meta.env.BASE_URL}images/click-into-the-moment/film-photo-03.jpg`}
+      alt="Developed 35mm film photograph 3"
+    />
+
+    <img
+      src={`${import.meta.env.BASE_URL}images/click-into-the-moment/film-photo-01.jpg`}
+      alt="Developed 35mm film photograph 1"
+    />
+
+    <img
+      src={`${import.meta.env.BASE_URL}images/click-into-the-moment/film-photo-02.jpg`}
+      alt="Developed 35mm film photograph 2"
+    />
+
+    <img
+      src={`${import.meta.env.BASE_URL}images/click-into-the-moment/film-photo-04.jpg`}
+      alt="Developed 35mm film photograph 4"
+    />
+
+  </div>
+
+  <p className="project-outcome-caption">
+    Original photographs captured using the Easypix
+    35mm film camera.
+  </p>
+
+</section>
+
+{/* Introduces the project development and documentation */}
+<div className="project-documentation-intro">
+  <span className="project-section-label">
+    04 — Behind the Project
+  </span>
+
+  <h2>The creative process</h2>
+
+  <p>
+    Explore the development, production and personal
+    reflection behind Click Into the Moment.
+  </p>
+</div>
+
+{/* Expandable group production blog */}
+<details className="project-blog">
+  <summary className="project-blog-heading">
+    <div>
+      <h3>Blog 1 — Group Video Production</h3>
+      <p>Concept, planning, filming and editing</p>
+    </div>
+    <i className="bi bi-chevron-down project-blog-chevron"></i>
+  </summary>
+
+  <div className="project-blog-content">
 
     {/* Introduces the background and purpose of my video project */}
     <h3>Project Overview</h3>
@@ -694,8 +959,6 @@ shows the content for my video production
   alt="Initial brainstorming exploring the Easypix camera concept and target audience"
   className="video-process-image"
 />
-
-
 
 {/* Explains the planning process before filming */}
 <h3>Pre-production & Storyboarding</h3>
@@ -905,12 +1168,20 @@ shows the content for my video production
     alt="Developed 35mm film photograph 4"
   />
 </div>
+  </div>
+</details>
 
-{/* Individual reflection on the video production project */}
-{/* Visually separates the group blog from my individual reflection */}
-<hr className="video-blog-divider" />
-{/* Separates the individual reflection from the group production blog */}
-<h2>Blog 2 - Individual Production Reflection</h2>
+{/* Expandable individual production reflection */}
+<details className="project-blog">
+  <summary className="project-blog-heading">
+    <div>
+      <h3>Blog 2 — Individual Production Reflection</h3>
+      <p>My responsibilities, experience and learning</p>
+    </div>
+    <i className="bi bi-chevron-down project-blog-chevron"></i>
+  </summary>
+
+  <div className="project-blog-content">
 
 
 {/* Explains my individual contribution to the group project */}
@@ -1003,7 +1274,8 @@ shows the content for my video production
   giving me more confidence in directing and
   communicating creative ideas.
 </p>
-
+  </div>
+</details>
   </section>
 )}
 </main>

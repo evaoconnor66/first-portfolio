@@ -1,211 +1,267 @@
+
+/* ==================================================
+   HOME PAGE
+
+   Includes:
+   01 - Navigation
+   02 - Hero introduction
+   03 - About preview
+   04 - Selected work
+   05 - Contact section
+   06 - Footer
+   ================================================== */
+
+// Imports reusable components and project data
 import { Link } from "react-router";
-import Navbar from "../components/Navbar"; // imports my reusable navbar
-import Footer from "../components/Footer"; // imports my reusable footer
-import { sortedProjects } from "../data/projects"; // Gets my portfolio projects from the central project data file
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { sortedProjects } from "../data/projects";
 
+function Home() {
 
-function Home() { // creates the component that will be my home page
-/* OLD CODE — manually selecting a featured project
-const featuredProject = sortedProjects.find(
-  (project) => project.featured === true
-);
-*/
+  // Automatically selects the most recent project
+  const featuredProject = sortedProjects[0];
 
-// NEW CODE — automatically selects the newest project
-const featuredProject = sortedProjects[0];
+  // Selects the next four most recent projects
+  const otherProjects = sortedProjects.slice(1, 5);
 
-/* OLD CODE — selected four projects by excluding the featured project
-const otherProjects = sortedProjects
-  .filter((project) => project.id !== featuredProject?.id)
-  .slice(0, 4);
-*/
-
-// NEW CODE — displays projects 2 to 5, in completion-date order
-// Project 1 is already displayed in the large first card
-// When a newer project is added, the oldest drops off the homepage
-const otherProjects = sortedProjects.slice(1, 5);
+  // Identifies portrait and landscape project images
+  function getImageClass(projectId: string) {
+    return projectId === "photography-series" ||
+      projectId === "nos-nua"
+      ? "project-image-portrait"
+      : "project-image-landscape";
+  }
 
   return (
     <div className="home-page">
-      {/* everything inside here is what React puts on the screen */}
 
-{/* puts my reusable navbar on the home page */}
-<Navbar />
+      {/* ==========================================
+          01 - NAVIGATION
+          ========================================== */}
 
-    {/*main intro people see when they first open my website */}
-    <section className="hero">
+      <Navbar />
+
+
+      {/* ==========================================
+          02 - HERO INTRODUCTION
+          ========================================== */}
+
+      <section className="hero">
         <div className="hero-text">
-            <p className="hero-intro">PRODUCT & INTERACTION DESIGNER</p>
-           
 
-<h1>
-  <span className="hero-first-name">EVA</span>
-  <span className="hero-last-name">
-    O'CONNOR<span className="hero-dot">.</span>
-  </span>
-</h1>
-            
-            </div>
-    </section>
-  
-  {/* short intro about me - full information will be on my About page */}
-<section className="about-preview">
-  
-<h2>
-  Beyond the{" "}
-  <span className="about-highlight">portfolio.</span>
-</h2>
+          {/* Introduces my design specialism */}
+          <p className="hero-intro">
+            PRODUCT & INTERACTION DESIGNER
+          </p>
+
+          {/* Displays my name across two lines */}
+          <h1>
+            <span className="hero-first-name">EVA</span>
+
+            <span className="hero-last-name">
+              O'CONNOR<span className="hero-dot">.</span>
+            </span>
+          </h1>
+
+        </div>
+      </section>
 
 
-  <Link to="/about" className="text-link">
-    Get to know me →
-  </Link>
-</section>
+      {/* ==========================================
+          03 - ABOUT PREVIEW
+          ========================================== */}
 
-  
-    {/* shows a selection of my main projects on the home page */}
-    <section className="featured-projects">
+      <section className="about-preview">
+
+        {/* Highlights part of the heading in pink */}
+        <h2>
+          Beyond the{" "}
+          <span className="about-highlight">portfolio.</span>
+        </h2>
+
+        {/* Links to my full About page */}
+        <Link to="/about" className="text-link">
+          Get to know me →
+        </Link>
+
+      </section>
+
+
+      {/* ==========================================
+          04 - SELECTED WORK
+          ========================================== */}
+
+      <section className="featured-projects">
+
         <h2>Selected Work</h2>
+
+        {/* Creates a two-column staggered gallery */}
         <div className="project-grid">
 
-  {/* Left column of the editorial project gallery */}
-<div className="project-column project-column-left">
+
+          {/* LEFT COLUMN */}
+          <div className="project-column project-column-left">
+
+            {/* Displays my most recent project first */}
+            {featuredProject && (
+              <article className="project-card featured-card">
+
+                <Link to={`/projects/${featuredProject.id}`}>
+
+                  {/* Displays the cover using the correct image proportions */}
+                  <div
+                    className={`project-image-placeholder ${getImageClass(
+                      featuredProject.id
+                    )}`}
+                  >
+                    {featuredProject.image ? (
+                      <img
+                        src={featuredProject.image}
+                        alt={`${featuredProject.title} project cover`}
+                        className="project-cover-image"
+                      />
+                    ) : (
+                      <div className="coming-soon-placeholder">
+                        <span>COMING SOON</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Displays the project category and title */}
+                  <div className="project-info">
+                    <p className="project-type">
+                      {featuredProject.type}
+                    </p>
+                    <h3>{featuredProject.title}</h3>
+                  </div>
+
+                </Link>
+              </article>
+            )}
+
+            {/* Displays alternating projects in the left column */}
+            {otherProjects
+              .filter((_, index) => index % 2 === 1)
+              .map((project) => (
+                <article className="project-card" key={project.id}>
+
+                  <Link to={`/projects/${project.id}`}>
+
+                    {/* Displays the project cover or a placeholder */}
+                    <div
+                      className={`project-image-placeholder ${getImageClass(
+                        project.id
+                      )}`}
+                    >
+                      {project.image ? (
+                        <img
+                          src={project.image}
+                          alt={`${project.title} project cover`}
+                          className="project-cover-image"
+                        />
+                      ) : (
+                        <div className="coming-soon-placeholder">
+                          <span>COMING SOON</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Displays the project category and title */}
+                    <div className="project-info">
+                      <p className="project-type">
+                        {project.type}
+                      </p>
+                      <h3>{project.title}</h3>
+                    </div>
+
+                  </Link>
+                </article>
+              ))}
+
+          </div>
 
 
-{/* Displays the project marked as featured */}
-{featuredProject && (
-  <article className="project-card featured-card">
+          {/* RIGHT COLUMN */}
+          <div className="project-column project-column-right">
 
-    {/* Links to the full project case study */}
-    <Link to={`/projects/${featuredProject.id}`}>
+            {/* Displays the remaining alternating projects */}
+            {otherProjects
+              .filter((_, index) => index % 2 === 0)
+              .map((project) => (
+                <article className="project-card" key={project.id}>
 
-      {/* Displays the project's cover image */}
-      <div className="project-image-placeholder">
-        <img
-          src={featuredProject.image}
-          alt={`${featuredProject.title} project cover`}
-          className="project-cover-image"
-        />
-      </div>
+                  <Link to={`/projects/${project.id}`}>
 
-      {/* Displays the project title and category */}
-      <div className="project-info">
-        <p className="project-type">{featuredProject.type}</p>
-        <h3>{featuredProject.title}</h3>
-      </div>
+                    {/* Displays the project cover or a placeholder */}
+                    <div
+                      className={`project-image-placeholder ${getImageClass(
+                        project.id
+                      )}`}
+                    >
+                      {project.image ? (
+                        <img
+                          src={project.image}
+                          alt={`${project.title} project cover`}
+                          className="project-cover-image"
+                        />
+                      ) : (
+                        <div className="coming-soon-placeholder">
+                          <span>COMING SOON</span>
+                        </div>
+                      )}
+                    </div>
 
-    </Link>
-  </article>
-)}
+                    {/* Displays the project category and title */}
+                    <div className="project-info">
+                      <p className="project-type">
+                        {project.type}
+                      </p>
+                      <h3>{project.title}</h3>
+                    </div>
 
-{/* Selects every second project for the left column */}
-{otherProjects.filter((_, index) => index % 2 === 1).map((project) => (
-    <article className="project-card" key={project.id}>
+                  </Link>
+                </article>
+              ))}
 
-    {/* Links each card to its full project page */}
-    <Link to={`/projects/${project.id}`}>
+          </div>
 
-      {/* Displays the project's cover image */}
-
-<div className="project-image-placeholder">
-  {project.image ? (
-    <img
-      src={project.image}
-      alt={`${project.title} project cover`}
-      className="project-cover-image"
-    />
-  ) : (
-    <div className="coming-soon-placeholder">
-      <span>COMING SOON</span>
-    </div>
-  )}
-</div>
+        </div>
+      </section>
 
 
-      {/* Displays the project category and name */}
-      <div className="project-info">
-        <p className="project-type">{project.type}</p>
-        <h3>{project.title}</h3>
-      </div>
+      {/* ==========================================
+          05 - CONTACT SECTION
+          ========================================== */}
 
-    </Link>
-  </article>
-))}
+      <section className="contact-cta">
 
-{/* Closes the left column of the project gallery */}
-</div>
+        <p className="section-label">Get In Touch</p>
 
-{/* Right column of the editorial project gallery */}
-<div className="project-column project-column-right">
+        <h2>Have something in mind?</h2>
 
- {/* Creates a smaller card for every non-featured project */}
-{otherProjects.filter((_, index) => index % 2 === 0).map((project) => (
-  <article className="project-card" key={project.id}>
+        {/* Main contact statement */}
+        <h3 className="home-contact-statement">
+          Let's talk.
+        </h3>
 
-    {/* Links each card to its full project page */}
-    <Link to={`/projects/${project.id}`}>
+        {/* Opens the visitor's email application */}
+        <a
+          href="mailto:evaoconnor66@gmail.com"
+          className="contact-email"
+        >
+          evaoconnor66@gmail.com
+        </a>
 
-{/* Displays a placeholder for future projects without images */}
-<div className="project-image-placeholder">
-  {project.image ? (
-    <img
-      src={project.image}
-      alt={`${project.title} project cover`}
-      className="project-cover-image"
-    />
-  ) : (
-    <div className="coming-soon-placeholder">
-      COMING SOON
-    </div>
-  )}
-</div>
-
-      {/* Displays the project category and name */}
-      <div className="project-info">
-        <p className="project-type">{project.type}</p>
-        <h3>{project.title}</h3>
-      </div>
-
-    </Link>
-  </article>
-))}
-
-{/* Closes the right column */}
-</div>
-
-{/* Closes the overall project grid */}
-</div>
-
-{/* Closes the Selected Work section */}
-</section>
+      </section>
 
 
-{/* Large contact section at the bottom of my homepage */}
-<section className="contact-cta">
+      {/* ==========================================
+          06 - FOOTER
+          ========================================== */}
 
-  {/* Small section label */}
-  <p className="section-label">Get In Touch</p>
+      <Footer />
 
-  {/* Main contact heading */}
-  <h2>Have something in mind?</h2>
-
-  {/* Large editorial statement */}
-  <h3 className="contact-statement">Let's talk.</h3>
-
-  {/* Clickable email address */}
-  <a
-    href="mailto:evaoconnor66@gmail.com"
-    className="contact-email"
-  >
-    evaoconnor66@gmail.com
-    
-  </a>
-
-</section>
-
-
-{/* puts my reusable footer at the bottom of the home page */}
-<Footer />
     </div>
   );
 }
